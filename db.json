@@ -1,0 +1,80 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Andreea",
+            "age": 21,
+            "job": "Software Engineer",
+            "company": "Google",
+            "department": "IT"
+        },
+        {
+            "id": 2,
+            "name": "Alexandru",
+            "age": 31,
+            "job": "Analyst",
+            "company": "IBM",
+            "department": "IT"
+        },
+        {
+            "id": 3,
+            "name": "Andrei",
+            "age": 40,
+            "job": "Tester",
+            "company": "Microsoft",
+            "department": "IT"
+        },
+        {
+            "id": 4,
+            "name": "Mihai",
+            "age": 26,
+            "job": "Database Developer",
+            "company": "Oracle",
+            "department": "IT"
+        },
+        {
+            "id": 5,
+            "name": "Maria",
+            "age": 28,
+            "job": "Frontend Developer",
+            "company": "Facebook",
+            "department": "IT"
+        },
+        {
+            "id": 6,
+            "name": "Dudoi",
+            "age": 44,
+            "job": "Structurist",
+            "company": "Strucky",
+            "department": "Civil Engineering"
+        }
+    ],
+
+    "owners": [
+      {
+        "owner_id":"52",
+        "name":"Ion Andreescu",
+        "phone":"0777777777", 
+        "email":"ionandreescu@gmail.com",
+        "address":"Bulevardul Ion Mihalache, bl C15, apt. 108" 
+        },
+        {
+            "owner_id":"",
+            "name":"Marcela Ionescu",
+            "phone":"0111111111",
+            "email":"marcelaionescu@gmail.com",
+            "address":"Calea Victoriei, nr 14"
+            }
+    ],
+
+    "pets": [
+        {
+        "pet_id":"2",
+        "species":"cat",
+        "breed":"common",
+        "name":"Mrs. Cuddles",
+        "age":"2",
+        "weight":"3.7"
+        }
+    ]
+}
