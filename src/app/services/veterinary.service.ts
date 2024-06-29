@@ -26,6 +26,16 @@ import { HttpClient } from '@angular/common/http';
     //   return this.httpClient.get<Veterinary>(this.baseURL + "/veterinary/" + id);
     // }
   
-  
+  //HTTP GET REQUEST
+    putVeterinary(): Observable<Veterinary>{
+      const veterinary =  {
+        id : 1,
+        name :"Ion Andreescu",
+        phone : "074777495723",
+        mail : "ionandreescu@gmail.com",
+        speciality : "dentist"
+      };
+      return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/update", veterinary);
+    }
   
   }

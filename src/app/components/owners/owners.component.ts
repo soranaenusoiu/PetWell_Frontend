@@ -35,7 +35,7 @@ export class OwnersComponent implements OnInit {
   ngOnInit(): void {
     this.owsService.getAllOwners().subscribe((data:Owner[])=>{
     this.ownersList = data;
-      console.log("OWners list: " + JSON.stringify(this.ownersList));
+      console.log("Owners list: " + JSON.stringify(this.ownersList));
     })
 
   }

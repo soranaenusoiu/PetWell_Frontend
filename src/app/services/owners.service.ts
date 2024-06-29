@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class OwnersService {
-  private baseURL = "http://localhost:3000";
+  private baseURL = "http://localhost:8080";
   private backendURL = "http://localhost:8080/hello"
 
   constructor(private httpClient:HttpClient) { }
@@ -17,12 +17,12 @@ export class OwnersService {
 
   //HTTP GET REQUEST  -> READ
   getAllOwners(): Observable<Owner[]> {
-    return this.httpClient.get<Owner[]>(this.baseURL + "/owners");
+    return this.httpClient.get<Owner[]>(this.baseURL + "/owner/get");
   }
 
   //HTTP GET BY ID REQUEST -> READ
   getOwnerById(id:any):Observable<Owner>{
-    return this.httpClient.get<Owner>(this.baseURL + "/owners/" + id);
+    return this.httpClient.get<Owner>(this.baseURL + "/owner/" + id);
   }
 
 

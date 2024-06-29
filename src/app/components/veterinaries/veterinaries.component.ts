@@ -22,14 +22,16 @@ export class VeterinariesComponent {
   // }
   veterinariesList: Veterinary[] = [];
 
-  constructor(private empsService: VeterinariesService){}
+  constructor(private vetsService: VeterinariesService){}
 
   ngOnInit(): void {
-    this.empsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
+    this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
     this.veterinariesList = data;
     console.log("Veterinaries list: " + JSON.stringify(this.veterinariesList));
     })
-
+    // this.vetsService.putVeterinary().subscribe((resp:any)=>{
+    //   console.log(JSON.stringify(resp));
+    // });
   }
 
 }
