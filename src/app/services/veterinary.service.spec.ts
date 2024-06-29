@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VeterinariesService {
-  private baseURL = "http://localhost:3000";
-  private backendURL = "http://localhost:8080/hello"
+  private baseURL = "http://localhost:8080";
+  private backendURL = "http://localhost:8080"
 
   constructor(private httpClient:HttpClient) { }
 
@@ -17,12 +17,12 @@ export class VeterinariesService {
 
   //HTTP GET REQUEST  -> READ
   getAllVeterinaries(): Observable<Veterinary[]> {
-    return this.httpClient.get<Veterinary[]>(this.baseURL + "/veterinaries");
+    return this.httpClient.get<Veterinary[]>(this.backendURL + "/veterinary/getAll");
   }
 
   //HTTP GET BY ID REQUEST -> READ
   getVeterinaryById(id:any):Observable<Veterinary>{
-    return this.httpClient.get<Veterinary>(this.baseURL + "/veterinaries/" + id);
+    return this.httpClient.get<Veterinary>(this.backendURL + "/veterinary/" + id);
   }
 
   sayHello(){

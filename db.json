@@ -53,14 +53,14 @@
     "owners": [
       {
         "owner_id":"52",
-        "name":"Ion Andreescu",
+        "name":"Ion Andreescu din dbjson",
         "phone":"0777777777", 
         "email":"ionandreescu@gmail.com",
         "address":"Bulevardul Ion Mihalache, bl C15, apt. 108" 
         },
         {
             "owner_id":"",
-            "name":"Marcela Ionescu",
+            "name":"Marcela Ionescu din dbjson",
             "phone":"0111111111",
             "email":"marcelaionescu@gmail.com",
             "address":"Calea Victoriei, nr 14"
@@ -75,6 +75,24 @@
         "name":"Mrs. Cuddles",
         "age":"2",
         "weight":"3.7"
+        }
+    ],
+
+    "veterinary": [
+        {
+            "id":2,
+            "name":"name92",
+            "phone":"phone2",
+            "mail":"email2",
+            "speciality":"speciality2"
+        },
+        {
+            "id":1,
+            "name":"name91",
+            "phone":"phone1",
+            "mail":"email1",
+            "speciality":"speciality1"       
+
         }
     ]
 }

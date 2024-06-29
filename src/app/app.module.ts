@@ -14,7 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CrudComponent } from './components/crud/crud.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DetailsComponent } from './components/details/details.component';
-import { OwnersComponent } from './owners/owners.component';
+import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { VeterinariesComponent } from './components/veterinaries/veterinaries.component';
 
@@ -30,7 +30,7 @@ import { VeterinariesComponent } from './components/veterinaries/veterinaries.co
     DetailsComponent,
     OwnersComponent,
     PetsComponent,
-    VeterinariesComponent
+    VeterinariesComponent,
   ],
   imports: [
     BrowserModule,

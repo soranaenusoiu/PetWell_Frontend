@@ -2,6 +2,6 @@ export interface Veterinary {
     id:number,
     name:string,
     phone:string,
-    email:string,
+    mail:string,
     speciality:string
 }
