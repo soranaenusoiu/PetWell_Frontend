@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Pet } from 'src/app/interfaces/pet';
+import { PetService} from 'src/app/services/pet.service';
 
 @Component({
   selector: 'app-pets',
@@ -6,22 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./pets.component.scss']
 })
 export class PetsComponent {
-
   isDisabled = false;
-  imgPath1 = "../assets/img/img1.jpg";
+  imgPath1 = "../assets/img/img1.jpg"
   selectedPet:any;
+  
+  petList: Pet[] = [];
 
-   
+  constructor(private petService: PetService){}
 
-  pets = [
-    {species:"cat", breed:"common", name:"Mrs. Cuddles", age:"2", weight:"3.7"},
-  ]
-
-  clickListItem(pet:any){
-      this.selectedPet = pet;
-      console.log("Pet list item data: " + JSON.stringify(this.selectedPet));
-      console.log("Pet list item data: " + JSON.stringify(pet));
+  ngOnInit(): void {
+    this.petService.getAllPets().subscribe((data:Pet[])=>{
+    this.petList = data;
+    console.log("Pets list: " + JSON.stringify(this.petList));
+    })
+    this.petService.putPet().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
   }
-
 
 }

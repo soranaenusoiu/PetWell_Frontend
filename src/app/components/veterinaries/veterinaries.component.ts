@@ -32,6 +32,7 @@ export class VeterinariesComponent {
     // this.vetsService.putVeterinary().subscribe((resp:any)=>{
     //   console.log(JSON.stringify(resp));
     // });
+    
   }
 
 }
