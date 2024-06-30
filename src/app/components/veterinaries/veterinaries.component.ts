@@ -21,6 +21,7 @@ export class VeterinariesComponent {
   //     console.log("Veterinary list item data: " + JSON.stringify(veterinary));
   // }
   veterinariesList: Veterinary[] = [];
+  veterinaryGetByName: Veterinary;
 
   constructor(private vetsService: VeterinariesService){}
 
@@ -29,9 +30,19 @@ export class VeterinariesComponent {
     this.veterinariesList = data;
     console.log("Veterinaries list: " + JSON.stringify(this.veterinariesList));
     })
-    // this.vetsService.putVeterinary().subscribe((resp:any)=>{
+
+    this.vetsService.putVeterinary().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
+
+    this.vetsService.deleteVeterinary().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
+
+    // this.vetsService.addVeterinary().subscribe((resp:any)=>{
     //   console.log(JSON.stringify(resp));
     // });
   }
+
 
 }
