@@ -33,7 +33,7 @@ import { HttpClient } from '@angular/common/http';
         id : 1,
         name :"Ion Andreescu",
         phone : "074777495723",
-        mail : "ionandreescu@gmail.com",
+        email : "ionandreescu@gmail.com",
         speciality : "dentist"
       };
       return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/update", veterinary);

@@ -33,10 +33,22 @@ export class OwnersComponent implements OnInit {
   constructor(private owsService: OwnersService) { }
 
   ngOnInit(): void {
+     // this.owsService.addOwner().subscribe((resp:any)=>{
+    //   console.log(JSON.stringify(resp));
+    // });
     this.owsService.getAllOwners().subscribe((data:Owner[])=>{
     this.ownersList = data;
       console.log("Owners list: " + JSON.stringify(this.ownersList));
     })
-
+    this.owsService.getOwnerByPhone().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
+    this.owsService.putOwner().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
+    this.owsService.deleteOwner().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
+   
   }
 }
