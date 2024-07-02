@@ -17,13 +17,23 @@ export class PetsComponent {
   constructor(private petService: PetService){}
 
   ngOnInit(): void {
+    //  this.petService.addPet().subscribe((resp:any)=>{
+    //   console.log(JSON.stringify(resp));
+    // });
     this.petService.getAllPets().subscribe((data:Pet[])=>{
     this.petList = data;
     console.log("Pets list: " + JSON.stringify(this.petList));
     })
+    this.petService.getPetsByOwner().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
     this.petService.putPet().subscribe((resp:any)=>{
       console.log(JSON.stringify(resp));
     });
+    this.petService.deletePet().subscribe((resp:any)=>{
+      console.log(JSON.stringify(resp));
+    });
   }
+  
 
 }

@@ -18,6 +18,7 @@ import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { VeterinariesComponent } from './components/veterinaries/veterinaries.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { VeterinariesComponent } from './components/veterinaries/veterinaries.co
     OwnersComponent,
     PetsComponent,
     VeterinariesComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,19 @@
 <div style="margin-left: 30px;">
-    <h3>Pets Page</h3>
-</div>
+    <label>Pets Management</label>
+    <button type="button" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
+    <button type="button" class="btn btn-danger" style="background-color: green;">Del</button>
+    <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
+    <button type="button" class="btn btn-danger" style="background-color: green;">Edit</button>
+    <br>
+    <input type="text" id="petId" name="id" style="width: 50px">
+    <input type="text" id="petSpecies" name="species" style="width: 150px">
+    <input type="text" id="petBreed" name="breed" style="width: 150px">
+    <input type="text" id="petName" name="name" style="width: 250px">
+    <input type="text" id="petAge" name="age" style="width: 50px">
+    <input type="text" id="petWeight" name="weight" style="width: 100px">
+   
+
+    <br><br>
 
 <div class="image-container">
     <img [src]="imgPath1" alt="chameleon" class="image" style="margin-left: 30px;">
@@ -9,19 +22,21 @@
 
 <div>
     <!-- table>thead>tr>td*5 -->
-    <table class="table table-striped table-hover table bordered">
+    <table class="table table-striped table-hover table-bordered" style="width:fit-content">
         <thead>
             <tr>
-                <td>Species</td>
-                <td>Breed</td>
-                <td>Name</td>
-                <td>Age</td>
-                <td>Weight</td>
+                <th style="width:50px">Id</th>
+                <th style="width:150px">Species</th>
+                <th style="width:150px">Breed</th>
+                <th style="width:250px">Name</th>
+                <th style="width:50px">Age</th>
+                <th style="width:100px">Weight</th>
             </tr>
         </thead>
     <!-- tbody>tr>td*5-->
         <tbody>
             <tr *ngFor="let pet of petList">
+                <td>{{pet.id}}</td>
                 <td>{{pet.species}}</td>
                 <td>{{pet.breed}}</td>
                 <td>{{pet.name}}</td>
