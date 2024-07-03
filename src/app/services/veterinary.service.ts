@@ -14,45 +14,24 @@ import { HttpClient } from '@angular/common/http';
   
     constructor(private httpClient:HttpClient) { }
   
-    //HTTP Verbs Requests : GET, GET BY ID, POST, PUT, DELETE => through a HttpClientModule
-  
-    //HTTP GET  ALL REQUEST  -> READ
+    addVeterinary(veterinaryAdd: Veterinary): Observable<Veterinary> {
+      return this.httpClient.post<Veterinary>(this.baseURL + "/veterinary/add", veterinaryAdd);
+    }
+
     getAllVeterinaries(): Observable<Veterinary[]> {
       return this.httpClient.get<Veterinary[]>(this.baseURL + "/veterinary/getAll");
     }
+    getVeterinaryByName(veterinaryName: string): Observable<Veterinary> {
+      return this.httpClient.get<Veterinary>(this.baseURL + "/veterinary/getByName/"+veterinaryName);
+    }
   
 
-  //HTTP GET REQUEST
-  getByNameVeterinary(name: string): Observable<Veterinary> {
-    let veterinary
-    return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/getByName/"+name, veterinary);
-  }
+    updateVeterinary(veterinaryUpdate: Veterinary): Observable<Veterinary>{
+      return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/update", veterinaryUpdate);
+    }
 
-  putVeterinary(): Observable<Veterinary>{
-      const veterinary =  {
-        id : 1,
-        name :"Ion Andreescu",
-        phone : "074777495723",
-        email : "ionandreescu@gmail.com",
-        speciality : "dentist"
-      };
-      return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/update", veterinary);
-  }
-
-  deleteVeterinary(): Observable<Veterinary>{
-      let  idToDelete:number = 5;
+    deleteVeterinary(idToDelete: number): Observable<Veterinary>{
       return this.httpClient.delete<Veterinary>(this.baseURL + "/veterinary/deleteById/"+idToDelete);
-  }
-
-    // addVeterinary(): Observable<Veterinary> {
-    //   const veterinary =  {
-    //     name :"Ion Andreescu",
-    //     phone : "074777495723",
-    //     mail : "ionandreescu@gmail.com",
-    //     speciality : "dentist"
-    //   };
-    //   return this.httpClient.post<Veterinary>(this.baseURL + "/veterinary/add", veterinary);
-    // }
-
+    }
  
   }

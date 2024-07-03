@@ -13,10 +13,10 @@ export class CrudComponent implements OnInit {
   constructor(private owsService: OwnersService) { }
 
   ngOnInit(): void {
-    this.owsService.getAllOwners().subscribe((data:Owner[])=>{
-    this.ownersList = data;
-      console.log("OWners list: " + JSON.stringify(this.ownersList));
-    })
+    // this.owsService.getAllOwners().subscribe((data:Owner[])=>{
+    // this.ownersList = data;
+    //   console.log("OWners list: " + JSON.stringify(this.ownersList));
+    // })
 
   }
 

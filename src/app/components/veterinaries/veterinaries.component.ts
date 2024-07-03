@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { Veterinary } from 'src/app/interfaces/veterinary';
 import { VeterinariesService} from 'src/app/services/veterinary.service';
 
@@ -8,42 +9,62 @@ import { VeterinariesService} from 'src/app/services/veterinary.service';
   styleUrls: ['./veterinaries.component.scss']
 })
 export class VeterinariesComponent {
-  // isDisabled = false;
-  // imgPath = "../assets/img/img5.png";
-  // selectedVeterinary:any;
-  // veterinaries = [
-  //   {name:"Dr Arc Marcu", phone:"071111111", email:"vetmarcu@gmail.com", speciality:"surgery"},
-    
-  // ]
-  // clickListItem(veterinary:any){
-  //     this.selectedVeterinary = veterinary;
-  //     console.log("Veterinary list item data: " + JSON.stringify(this.selectedVeterinary));
-  //     console.log("Veterinary list item data: " + JSON.stringify(veterinary));
-  // }
+
   veterinariesList: Veterinary[] = [];
-  veterinaryGetByName: Veterinary;
+  veterinaryWork: Veterinary ={"id": 0,"name": "","phone": "","mail": "","speciality": ""};
+  selectedVeterinary:Veterinary
 
   constructor(private vetsService: VeterinariesService){}
 
   ngOnInit(): void {
+
+    // this.vetsService.getVeterinaryByName().subscribe((data:Veterinary)=>{
+    //   this.veterinaryWork = data;
+    //   console.log("Veterinaries list: " + JSON.stringify(this.veterinaryWork));
+    //   })
+
     this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
     this.veterinariesList = data;
     console.log("Veterinaries list: " + JSON.stringify(this.veterinariesList));
     })
-
-    this.vetsService.putVeterinary().subscribe((resp:any)=>{
-      console.log(JSON.stringify(resp));
-    });
-
-    this.vetsService.deleteVeterinary().subscribe((resp:any)=>{
-      console.log(JSON.stringify(resp));
-    });
-
-    // this.vetsService.addVeterinary().subscribe((resp:any)=>{
-    //   console.log(JSON.stringify(resp));
-    // });
-    
   }
 
+  clickAddButton(){
+        this.veterinaryWork.id=0;
+        this.vetsService.addVeterinary(this.veterinaryWork).subscribe((resp:any)=>{
+       console.log(JSON.stringify(resp));
+     }); 
+      location.reload();
+  }
+
+  clickDelButton(){
+        this.vetsService.deleteVeterinary(this.veterinaryWork.id).subscribe((resp:any)=>{
+       console.log(JSON.stringify(resp));
+     });
+     location.reload();
+  }
+
+  clickFindButton(){
+    alert("EDIT");
+    this.vetsService.getVeterinaryByName(this.veterinaryWork.name).subscribe((data:Veterinary)=>{
+      this.veterinaryWork = data;
+      console.log("Veterinaries list: " + JSON.stringify(this.veterinaryWork));
+      })
+  }
+
+  clickEditButton(){
+    this.vetsService.updateVeterinary(this.veterinaryWork).subscribe((resp:any)=>{
+   console.log(JSON.stringify(resp));
+   }); 
+   location.reload();
+  }
+
+  clickListItemVet(vet: Veterinary) {
+    this.veterinaryWork.id=vet.id;
+    this.veterinaryWork.name=vet.name;
+    this.veterinaryWork.phone=vet.phone;
+    this.veterinaryWork.mail=vet.mail;
+    this.veterinaryWork.speciality=vet.speciality;
+  }
 
 }

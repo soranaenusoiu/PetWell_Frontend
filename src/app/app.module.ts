@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DemoComponent } from './components/demo/demo.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,12 +15,13 @@ import { DetailsComponent } from './components/details/details.component';
 import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { VeterinariesComponent } from './components/veterinaries/veterinaries.component';
+import { SchedulesComponent } from './components/schedules/schedules.component';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
     EmployeesComponent,
     FooterComponent,
     NavbarComponent,
@@ -32,6 +31,8 @@ import { VeterinariesComponent } from './components/veterinaries/veterinaries.co
     OwnersComponent,
     PetsComponent,
     VeterinariesComponent,
+    SchedulesComponent,
+    AppointmentsComponent,
     
   ],
   imports: [

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DemoComponent } from './demo.component';
+import { SchedulesComponent } from './schedules.component';
 
-describe('DemoComponent', () => {
-  let component: DemoComponent;
-  let fixture: ComponentFixture<DemoComponent>;
+describe('SchedulesComponent', () => {
+  let component: SchedulesComponent;
+  let fixture: ComponentFixture<SchedulesComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DemoComponent]
+      declarations: [SchedulesComponent]
     });
-    fixture = TestBed.createComponent(DemoComponent);
+    fixture = TestBed.createComponent(SchedulesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -19,3 +19,4 @@ describe('DemoComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

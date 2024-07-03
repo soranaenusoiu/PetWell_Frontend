@@ -51,4 +51,5 @@ export class OwnersComponent implements OnInit {
     });
    
   }
+  
 }

@@ -1,19 +1,19 @@
 <div style="margin-left: 10px;">
     <label>Veterinaries Management</label>
-    <button type="button" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Del</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Edit</button>
+    <button type="button" (click)="clickAddButton()" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
+    <button type="button" (click)="clickFindButton()" class="btn btn-danger" style="background-color: green;">Find</button>
+    <button type="button" (click)="clickEditButton()" class="btn btn-danger" style="background-color: green;">Edit</button>
+    <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
     <br>
-    <input type="text" id="vetId" name="id" style="width: 50px">
-    <input type="text" id="vetName" name="name" style="width: 250px">
-    <input type="text" id="vetPhone" name="phone" style="width: 150px">
-    <input type="text" id="vetMail" name="mail" style="width: 250px">
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px">
+    <input type="text" id="vetId" name="id" style="width: 50px"  value="{{veterinaryWork.id}}"  [(ngModel)] = "veterinaryWork.id"> 
+    <input type="text" id="vetName" name="name" style="width: 250px"  value="{{veterinaryWork.name}}" [(ngModel)] = "veterinaryWork.name">
+    <input type="text" id="vetPhone" name="phone" style="width: 150px"  value="{{veterinaryWork.phone}}" [(ngModel)] = "veterinaryWork.phone" >
+    <input type="text" id="vetMail" name="mail" style="width: 250px"  value="{{veterinaryWork.mail}}" [(ngModel)] = "veterinaryWork.mail">
+    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{veterinaryWork.speciality}}" [(ngModel)] = "veterinaryWork.speciality" >
 
     <br><br>
 <p>Veterinary list</p>
-    <table class="table table-striped table-hover table-bordered" style="width:fit-content">
+    <table class="table table-striped table-hover table-bordered" style="width:fit-content" id="abc">
         <thead>
             <tr>
                 <th style="width:50px">Id</th>
@@ -21,25 +21,15 @@
                 <th style="width:150px">Phone</th>
                 <th style="width:250px">mail</th>
                 <th style="width:200px">Speciality</th>
-                <!--
-                <th style="width:220px">Actions</th>
-            -->
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let vet of veterinariesList">
+            <tr *ngFor="let vet of veterinariesList" (click)="clickListItemVet(vet)">
                 <td>{{vet.id}}</td>
                 <td>{{vet.name}}</td>
                 <td>{{vet.phone}}</td>
                 <td>{{vet.mail}}</td>
                 <td>{{vet.speciality}}</td>
-                                    <!--
-                <td>
-                    <a type="button" class="btn btn-info" [routerLink]="['/veterinaries/details', vet.id]">Details</a>
-                    <a type="button" class="btn btn-primary">Edit</a>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </td>
-            -->
             </tr>
         </tbody>
     </table>
