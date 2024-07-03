@@ -17,46 +17,57 @@ export class VeterinariesComponent {
   constructor(private vetsService: VeterinariesService){}
 
   ngOnInit(): void {
-
-    // this.vetsService.getVeterinaryByName().subscribe((data:Veterinary)=>{
-    //   this.veterinaryWork = data;
-    //   console.log("Veterinaries list: " + JSON.stringify(this.veterinaryWork));
-    //   })
-
     this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
-    this.veterinariesList = data;
-    console.log("Veterinaries list: " + JSON.stringify(this.veterinariesList));
+      this.veterinariesList = data;
+      console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));
     })
   }
 
   clickAddButton(){
         this.veterinaryWork.id=0;
+        if(this.veterinaryWork.name.length<=0 ) return;
         this.vetsService.addVeterinary(this.veterinaryWork).subscribe((resp:any)=>{
-       console.log(JSON.stringify(resp));
-     }); 
-      location.reload();
+        console.log("Add veterinary: "+JSON.stringify(resp));
+        // refresh veterinaries list
+        this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
+          this.veterinariesList = data;
+          console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));})
+        }); 
   }
 
   clickDelButton(){
-        this.vetsService.deleteVeterinary(this.veterinaryWork.id).subscribe((resp:any)=>{
-       console.log(JSON.stringify(resp));
-     });
-     location.reload();
+      this.vetsService.deleteVeterinary(this.veterinaryWork.id).subscribe((resp:any)=>{
+       console.log("Delete veterinary : "+JSON.stringify(resp));
+       // refresh veterinaries list
+        this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
+        this.veterinariesList = data;
+        console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));})
+      });
   }
 
   clickFindButton(){
-    alert("EDIT");
     this.vetsService.getVeterinaryByName(this.veterinaryWork.name).subscribe((data:Veterinary)=>{
       this.veterinaryWork = data;
-      console.log("Veterinaries list: " + JSON.stringify(this.veterinaryWork));
+      console.log("Find veterinary by name: " + JSON.stringify(this.veterinaryWork));
       })
   }
 
   clickEditButton(){
     this.vetsService.updateVeterinary(this.veterinaryWork).subscribe((resp:any)=>{
-   console.log(JSON.stringify(resp));
+    console.log("Update veterinary: "+JSON.stringify(resp));
+   // refresh veterinaries list
+    this.vetsService.getAllVeterinaries().subscribe((data:Veterinary[])=>{
+    this.veterinariesList = data;
+    console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));})
    }); 
-   location.reload();
+  }
+
+  clickResetButton(){
+     this.veterinaryWork.id=0;
+     this.veterinaryWork.mail="";
+     this.veterinaryWork.name="";
+     this.veterinaryWork.phone="";
+     this.veterinaryWork.speciality="";
   }
 
   clickListItemVet(vet: Veterinary) {
@@ -67,4 +78,7 @@ export class VeterinariesComponent {
     this.veterinaryWork.speciality=vet.speciality;
   }
 
+  clickButton(){
+    alert("Click again");
+  }
 }

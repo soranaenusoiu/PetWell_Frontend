@@ -4,6 +4,7 @@
     <button type="button" (click)="clickFindButton()" class="btn btn-danger" style="background-color: green;">Find</button>
     <button type="button" (click)="clickEditButton()" class="btn btn-danger" style="background-color: green;">Edit</button>
     <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
+    <button type="button" (click)="clickResetButton()" class="btn btn-danger" style="background-color: rgb(48, 127, 201);">Reset</button>   
     <br>
     <input type="text" id="vetId" name="id" style="width: 50px"  value="{{veterinaryWork.id}}"  [(ngModel)] = "veterinaryWork.id"> 
     <input type="text" id="vetName" name="name" style="width: 250px"  value="{{veterinaryWork.name}}" [(ngModel)] = "veterinaryWork.name">

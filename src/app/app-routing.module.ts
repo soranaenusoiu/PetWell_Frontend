@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { DemoComponent } from './components/demo/demo.component';
-import { EmployeesComponent } from './components/employees/employees.component';
 import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { VeterinariesComponent } from './components/veterinaries/veterinaries.component';
 import { SchedulesComponent } from './components/schedules/schedules.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { HomeComponent } from './components/home/home.component';
-import { CrudComponent } from './components/crud/crud.component';
-import { DetailsComponent } from './components/details/details.component';
 
 const routes: Routes = [
 
@@ -17,14 +13,7 @@ const routes: Routes = [
     path:'home',
     component:HomeComponent
   },
-  // {
-  //   path:'demo',
-  //   component:DemoComponent
-  // },
-  {
-    path:'employees',
-    component:EmployeesComponent
-  },
+
   {
     path:'appointments',
     component:AppointmentsComponent
@@ -45,19 +34,6 @@ const routes: Routes = [
     path:'schedules',
     component:SchedulesComponent
   },
-  {
-    path:'admin',
-    component:CrudComponent
-  },
-  {
-    path:'employees/details/:empId',
-    component:DetailsComponent
-  },
-   {
-    path:'veterinaries/details/:empId',
-    component:DetailsComponent
-  }
-
 
 ];
 

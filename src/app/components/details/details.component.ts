@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Employee } from 'src/app/interfaces/employee';
-import { EmployeesService } from 'src/app/services/employees.service';
+// import { Employee } from 'src/app/interfaces/employee';
+// import { EmployeesService } from 'src/app/services/employees.service';
 import { Owner } from 'src/app/interfaces/owner';
 import { Veterinary } from 'src/app/interfaces/veterinary';
 import { Pet } from 'src/app/interfaces/pet';
@@ -15,31 +15,26 @@ import { Pet } from 'src/app/interfaces/pet';
 export class DetailsComponent implements OnInit{
 
   id!:number;
-  emp!:Employee;
+  // emp!:Employee;
   ow!:Owner;
   pet!: Pet;
   vet!: Veterinary;
   message!: string;
 
-  constructor(private employeesService: EmployeesService, private activatedRoute: ActivatedRoute){
+  constructor(private activatedRoute: ActivatedRoute){
 
   }
 
   ngOnInit(): void {
-    this.getEmployeeDataById();
+    // this.getEmployeeDataById();
   }
 
-  getEmployeeDataById():void{
-    this.id = this.activatedRoute.snapshot.params['empId']
-    this.employeesService.getEmployeeById(this.id).subscribe((data:Employee)=>{
-      this.emp = data;
-      console.log("Emp data: " + JSON.stringify(this.emp));
-    });
-  }
-
- 
-
-  
-
+  // getEmployeeDataById():void{
+  //   // this.id = this.activatedRoute.snapshot.params['empId']
+  //   // this.employeesService.getEmployeeById(this.id).subscribe((data:Employee)=>{
+  //   //   this.emp = data;
+  //   //   console.log("Emp data: " + JSON.stringify(this.emp));
+  //   // });
+  // }
 
 }

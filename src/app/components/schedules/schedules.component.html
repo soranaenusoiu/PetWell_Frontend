@@ -6,6 +6,7 @@
     <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
     <button type="button" class="btn btn-danger" style="background-color: green;">Edit</button>
     <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
+    <button type="button" (click)="clickResetButton()" class="btn btn-danger" style="background-color: rgb(48, 127, 201);">Reset</button>
     <br>
     <input type="text" id="scheduleId" name="schId" style="width: 50px" value="{{scheduleWork.id}}" [(ngModel)] = "scheduleWork.id">
     <input type="text" id="scheduleStartTime" name="schStartTime" style="width: 250px" value="{{scheduleWork.stopTime}}" [(ngModel)] = "scheduleWork.startTime">

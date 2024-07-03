@@ -38,43 +38,50 @@ export class SchedulesComponent {
     //    console.log(JSON.stringify(resp));
     // });
 
-    // this.scheduleService.deleteSchedule().subscribe((resp:any)=>{
-    //   console.log(JSON.stringify(resp));
-    // });
-
   }
 
   clickAddButton(){
-      // alert("schduleWork");
       this.scheduleWork.id=0;
-      let veterinaryName : string = this.scheduleWork.veterinary.name;
-  // trebuie gasit veterinarul cu numele transmis ca parametru    
-      console.log("1. Init add ");
-      this.vetsService.getVeterinaryByName(veterinaryName).subscribe((data:Veterinary)=>{
+      if(this.scheduleWork.stopTime.length==0 || this.scheduleWork.stopTime.length==0 || this.scheduleWork.veterinary.name.length==0) return;
+      this.vetsService.getVeterinaryByName(this.scheduleWork.veterinary.name).subscribe((data:Veterinary)=>{
         this.scheduleWork.veterinary = data;
-        console.log("2. After to Veterinary found: " + JSON.stringify(this.scheduleWork));
+        console.log("Veterinary found: " + JSON.stringify(this.scheduleWork));
 
         this.scheduleService.addSchedule(this.scheduleWork).subscribe((resp:any)=>{
-          console.log("3. Schedule add: "+JSON.stringify(resp));
-
+          console.log("Schedule add: "+JSON.stringify(resp));
+          // refresh schedules list
           this.scheduleService.getAllSchedules().subscribe((data:Schedule[])=>{
             this.schedulesList = data;
-            console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
+            console.log("Schedules list: " + JSON.stringify(this.schedulesList));
           }) 
        })
-
-    }); 
-  // location.reload();
-    
+      }); 
   }
+
   clickDelButton(){
-    // alert("schduleWork");
     console.log("Schedule to deleted : "+JSON.stringify(this.scheduleWork));
      this.scheduleService.deleteSchedule(this.scheduleWork.id).subscribe((resp:any)=>{
-       console.log(JSON.stringify(resp));
+        console.log("Delete schedule : "+JSON.stringify(resp));
+        // refresh schedules list
+        this.scheduleService.getAllSchedules().subscribe((data:Schedule[])=>{
+          this.schedulesList = data;
+          console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
+        })  
      }); 
-    location.reload();
   }
+  
+  clickResetButton(){
+    this.scheduleWork.id=0;
+    this.scheduleWork.startTime="";
+    this.scheduleWork.stopTime="";
+    this.scheduleWork.veterinary=this.veterinaryWork;
+    this.veterinaryWork.id=0;
+    this.veterinaryWork.name="";
+    this.veterinaryWork.mail="";
+    this.veterinaryWork.phone="";
+    this.veterinaryWork.speciality="";
+ }
+
   clickListItemSch(sch: Schedule) {
     this.scheduleWork.id=sch.id;
     this.scheduleWork.startTime=sch.startTime;
