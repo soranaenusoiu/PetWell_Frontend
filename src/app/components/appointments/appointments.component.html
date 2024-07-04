@@ -1,4 +1,4 @@
-<div style="margin-left: 10px;">
+<div class="ms-1">
     <label>Appointments Management</label>
     <button type="button" (click)="clickAddButton()" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
     <button type="button" (click)="clickFindButton()" class="btn btn-danger" style="background-color: green;">Find</button>
@@ -6,15 +6,15 @@
     <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
     <button type="button" (click)="clickResetButton()" class="btn btn-danger" style="background-color: rgb(48, 127, 201);">Reset</button>   
     <br>
-    <input type="text" id="vetId" name="id" style="width: 40px"  value="{{appointmentWork.id}}"  [(ngModel)] = "veterinaryWork.id"> 
-    <input type="text" id="vetName" name="name" style="width: 200px"  value="{{appointmentWork.pet.owner.name}}" [(ngModel)] = "veterinaryWork.name">
-    <input type="text" id="vetPhone" name="phone" style="width: 150px"  value="{{appointmentWork.pet.name}}" [(ngModel)] = "veterinaryWork.phone" >
-    <input type="text" id="vetMail" name="mail" style="width: 200px"  value="{{appointmentWork.veterinary.name}}" [(ngModel)] = "veterinaryWork.mail">
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 150px" value="{{appointmentWork.initTime}}" [(ngModel)] = "veterinaryWork.speciality" >
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 150px" value="{{appointmentWork.endTime}}" [(ngModel)] = "veterinaryWork.speciality" >
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.reason}}" [(ngModel)] = "veterinaryWork.speciality" >
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.diagnosis}}" [(ngModel)] = "veterinaryWork.speciality" >
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.treatment}}" [(ngModel)] = "veterinaryWork.speciality" >
+    <input type="text" id="appId" name="id" style="width: 40px"  value="{{appointmentWork.id}}"  [(ngModel)] = "appointmentWork.id"> 
+    <input type="text" id="appOwnerName" name="name" style="width: 200px"  value="{{appointmentWork.pet.owner.name}}" [(ngModel)] = "appointmentWork.pet.owner.name">
+    <input type="text" id="appPetName" name="phone" style="width: 150px"  value="{{appointmentWork.pet.name}}" [(ngModel)] = "appointmentWork.pet.name" >
+    <input type="text" id="appVetName" name="mail" style="width: 200px"  value="{{appointmentWork.veterinary.name}}" [(ngModel)] = "appointmentWork.veterinary.name">
+    <input type="text" id="appInitTime" name="speciality" style="width: 150px" value="{{appointmentWork.initTime}}" [(ngModel)] = "appointmentWork.initTime" >
+    <input type="text" id="appEndTime" name="speciality" style="width: 150px" value="{{appointmentWork.endTime}}" [(ngModel)] = "appointmentWork.endTime" >
+    <input type="text" id="appReason" name="speciality" style="width: 200px" value="{{appointmentWork.reason}}" [(ngModel)] = "appointmentWork.reason" >
+    <!-- <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.diagnosis}}" [(ngModel)] = "veterinaryWork.speciality" >
+    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.treatment}}" [(ngModel)] = "veterinaryWork.speciality" > -->
     <br><br>
 
     <!-- <label>List of veterinarians ordered by : </label>
