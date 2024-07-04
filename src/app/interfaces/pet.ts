@@ -1,3 +1,5 @@
+import { Owner } from "./owner";
+
 export class Pet {
     id:number;
     species:string;
@@ -5,5 +7,5 @@ export class Pet {
     name:string;
     age:number;
     weight:number;
-    ownerId:number;
+    owner:Owner;
 }

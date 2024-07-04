@@ -78,7 +78,12 @@ export class VeterinariesComponent {
     this.veterinaryWork.speciality=vet.speciality;
   }
 
-  clickButton(){
-    alert("Click again");
+  clickOrdereByName() {
+    this.veterinariesList.sort(((a: Veterinary, b: Veterinary) => a.name.localeCompare(b.name)));
   }
+
+  clickOrdereBySpeciality() {
+    this.veterinariesList.sort(((a: Veterinary, b: Veterinary) => a.speciality.localeCompare(b.speciality)));
+  }
+
 }

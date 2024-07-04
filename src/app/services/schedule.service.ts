@@ -16,25 +16,7 @@ export class ScheduleService {
     //  HTTP GET  ALL REQUEST  -> READ
 
     addSchedule(schedule: Schedule): Observable<Schedule> {
-      // let schedule1:Schedule =  {
-      //   id:0,
-      //   startTime :"2024-10-07T12:12:00",
-      //   stopTime : "2024-10-07T12:12:44",
-      //   veterinary : {id:2,name:"vet2",phone:"phone2",mail:"vet4@yahoo2",speciality:"general2"}
-      // };
-    //   let schedule2: Schedule = {
-    //     "id":0,
-    //     "startTime":"2024-12-17T12:12:00",
-    //     "stopTime":"2024-12-17T12:12:44",
-    //     "veterinary":{
-    //     "id":2,
-    //     "name":"name2",
-    //     "phone":"phone2222",
-    //     "mail":"mail2222222",
-    //     "speciality":"speciality2"
-    //   }
-    // }   
-    console.log("Schedule to add: "+JSON.stringify(schedule));
+      console.log("Schedule to add: "+JSON.stringify(schedule));
       return this.httpClient.post<Schedule>(this.baseURL + "/schedule/add", schedule);
     }
 
@@ -55,18 +37,17 @@ export class ScheduleService {
     }
 
  
-    updateSchedule(): Observable<Schedule> {
-      let schedule:Schedule =  {
-        id:256,
-        startTime :"2024-06-07T12:12:00",
-        stopTime : "2024-06-07T12:12:44",
-        veterinary : {id:2,name:"name2",phone:"phone2",mail:"mail2",speciality:"speciality2"}
-      };
-      return this.httpClient.put<Schedule>(this.baseURL + "/schedule/add", schedule);
+    updateSchedule(schedule: Schedule): Observable<Schedule> {
+      // let schedule:Schedule =  {
+      //   id:256,
+      //   startTime :"2024-06-07T12:12:00",
+      //   stopTime : "2024-06-07T12:12:44",
+      //   veterinary : {id:2,name:"name2",phone:"phone2",mail:"mail2",speciality:"speciality2"}
+      // };
+      return this.httpClient.put<Schedule>(this.baseURL + "/schedule/update", schedule);
     } 
 
     deleteSchedule(idToDelete : number): Observable<Schedule>{
-      // let  idToDelete:number = 262;
       return this.httpClient.delete<Schedule>(this.baseURL + "/schedule/deleteById/"+idToDelete);
     }
 }

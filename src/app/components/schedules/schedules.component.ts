@@ -10,6 +10,7 @@ import { VeterinariesService} from 'src/app/services/veterinary.service';
   templateUrl: './schedules.component.html',
   styleUrls: ['./schedules.component.scss']
 })
+
 export class SchedulesComponent {
   schedulesList: Schedule[] = [];
   veterinaryWork: Veterinary={"id":0,"mail":"","name":"","phone":"","speciality":""}
@@ -19,25 +20,10 @@ export class SchedulesComponent {
 
   ngOnInit(): void {
 
-    // this.scheduleService.getScheduleById().subscribe((data:Schedule)=>{
-    //   this.scheduleWork = data;
-    //   console.log("Veterinaries list: " + JSON.stringify(this.scheduleWork));
-    // })
-
-    // this.scheduleService.getByVetByMonth().subscribe((data:Schedule[])=>{
-    //   this.schedulesList = data;
-    //   console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
-    // })
-
     this.scheduleService.getAllSchedules().subscribe((data:Schedule[])=>{
       this.schedulesList = data;
       console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
     })
-
-    // this.scheduleService.updateSchedule().subscribe((resp:any)=>{
-    //    console.log(JSON.stringify(resp));
-    // });
-
   }
 
   clickAddButton(){
@@ -70,6 +56,22 @@ export class SchedulesComponent {
      }); 
   }
   
+  clickEditButton(){
+    if(this.scheduleWork.stopTime.length==0 || this.scheduleWork.stopTime.length==0 || this.scheduleWork.veterinary.name.length==0) return;
+    this.vetsService.getVeterinaryByName(this.scheduleWork.veterinary.name).subscribe((data:Veterinary)=>{
+      this.scheduleWork.veterinary = data;
+      console.log("Veterinary found: " + JSON.stringify(this.scheduleWork));
+
+      this.scheduleService.updateSchedule(this.scheduleWork).subscribe((resp:any)=>{
+        console.log("Schedule add: "+JSON.stringify(resp));
+        // refresh schedules list
+        this.scheduleService.getAllSchedules().subscribe((data:Schedule[])=>{
+          this.schedulesList = data;
+          console.log("Schedules list: " + JSON.stringify(this.schedulesList));}) 
+      })
+    }); 
+  }
+
   clickResetButton(){
     this.scheduleWork.id=0;
     this.scheduleWork.startTime="";
@@ -80,7 +82,7 @@ export class SchedulesComponent {
     this.veterinaryWork.mail="";
     this.veterinaryWork.phone="";
     this.veterinaryWork.speciality="";
- }
+  }
 
   clickListItemSch(sch: Schedule) {
     this.scheduleWork.id=sch.id;
@@ -88,6 +90,24 @@ export class SchedulesComponent {
     this.scheduleWork.stopTime=sch.stopTime;
     this.scheduleWork.veterinary.name=sch.veterinary.name;
     this.scheduleWork.veterinary.id=sch.veterinary.id;
+  }
+
+  clickForAllVeterinarians(){
+    this.scheduleService.getAllSchedules().subscribe((data:Schedule[])=>{
+      this.schedulesList = data;
+      console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
+    })
+  }
+
+  clickOneVeterinary(nameVeterinary: string){
+    this.schedulesList=this.schedulesList.filter(predicatef)
+    function predicatef(value: Schedule){
+        return value.veterinary.name===nameVeterinary;
+    }
+  }
+
+  clickOneVeterinaryOnemonth(){
+
   }
 
 }
