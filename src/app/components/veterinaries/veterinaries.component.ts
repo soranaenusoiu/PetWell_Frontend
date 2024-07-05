@@ -13,6 +13,7 @@ export class VeterinariesComponent {
   veterinariesList: Veterinary[] = [];
   veterinaryWork: Veterinary = { "id": 0, "name": "", "phone": "", "mail": "", "speciality": "" };
   selectedVeterinary: Veterinary
+  tipSortList: string="sortByName";
 
   constructor(private vetsService: VeterinariesService) { }
 
@@ -21,10 +22,19 @@ export class VeterinariesComponent {
   }
 
   refreshList() {
+    console.log(".... tipSortList "+this.tipSortList);
     this.vetsService.getAllVeterinaries().subscribe((data: Veterinary[]) => {
       this.veterinariesList = data;
       console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));
     })
+    if (this.tipSortList==="sortByName") {
+      this.clickOrdereByName();
+      return;
+    }
+    if (this.tipSortList==="sortBySpeciality") {
+      this.clickOrdereBySpeciality();
+      return;
+    }
   }
 
   clickAddButton() {
