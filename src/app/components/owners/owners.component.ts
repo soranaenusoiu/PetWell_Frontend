@@ -8,11 +8,12 @@ import { OwnersService } from 'src/app/services/owners.service';
   styleUrls: ['./owners.component.scss']
 
 })
-export class OwnersComponent implements OnInit {
-  isDisabled = false;
-  imgPath2 = "../assets/img/img3.jpg";
-  selectedOwner:any;
+export class OwnersComponent {
+  
+  // imgPath2 = "../assets/img/img3.jpg";
+  //selectedOwner:Owner;
   ownersList: Owner[] = [];
+  ownerWork: Owner = { "id": 0, "name": "", "phone": "", "email": "", "address": "" };
   // constructor(private owsService: OwnersService) { }
   // owners = [
   //   {name:"Ion Andreescu", phone:"0777777777", email:"ionandreescu@gmail.com", address:"Bulevardul Ion Mihalache, bl C15, apt. 108"},
@@ -33,23 +34,68 @@ export class OwnersComponent implements OnInit {
   constructor(private owsService: OwnersService) { }
 
   ngOnInit(): void {
-     // this.owsService.addOwner().subscribe((resp:any)=>{
+    //  // this.owsService.addOwner().subscribe((resp:any)=>{
+    // //   console.log(JSON.stringify(resp));
+    // // });
+    // this.owsService.getAllOwners().subscribe((data:Owner[])=>{
+    // this.ownersList = data;
+    //   console.log("Owners list: " + JSON.stringify(this.ownersList));
+    // })
+    // this.owsService.getOwnerByPhone().subscribe((resp:any)=>{
     //   console.log(JSON.stringify(resp));
     // });
-    this.owsService.getAllOwners().subscribe((data:Owner[])=>{
-    this.ownersList = data;
-      console.log("Owners list: " + JSON.stringify(this.ownersList));
-    })
-    this.owsService.getOwnerByPhone().subscribe((resp:any)=>{
-      console.log(JSON.stringify(resp));
-    });
-    this.owsService.putOwner().subscribe((resp:any)=>{
-      console.log(JSON.stringify(resp));
-    });
-    this.owsService.deleteOwner().subscribe((resp:any)=>{
-      console.log(JSON.stringify(resp));
-    });
-   
+    // this.owsService.putOwner().subscribe((resp:any)=>{
+    //   console.log(JSON.stringify(resp));
+    // });
+    // this.owsService.deleteOwner().subscribe((resp:any)=>{
+    //   console.log(JSON.stringify(resp));
+    // });
+   this.refreshList();
+  }
+
+  refreshList() {
+    this.owsService.getAllOwners().subscribe((data: Owner[]) => {
+      this.ownersList = data;
+      console.log("All owners list: " + JSON.stringify(this.ownersList));
+    })}
+
+    clickAddButton(){
+      this.ownerWork.id = 0;
+      if (this.ownerWork.name.length <= 0) return;
+      // console.log("Add owner test: " + JSON.stringify(this.ownerWork));
+      this.owsService.addOwner(this.ownerWork).subscribe((resp: any) => {
+        console.log("Add owner: " + JSON.stringify(resp));
+        // refresh veterinaries list
+        this.refreshList();
+      });
+    }
+
+    clickFindButton(){
+
+    }
+
+    clickEditButton(){
+
+    }
+
+    clickDeleteButton(){
+
+    }
+
+    clickResetButton() {
+      this.ownerWork.id = 0;
+      this.ownerWork.name = "";
+      this.ownerWork.phone = "";
+      this.ownerWork.email = "";
+      this.ownerWork.address = "";
+    } 
+
+  clickListItemOw(ow: Owner) {
+    this.ownerWork.id = ow.id;
+    this.ownerWork.name = ow.name;
+    this.ownerWork.phone = ow.phone;
+    this.ownerWork.email = ow.email;
+    this.ownerWork.address = ow.address;
   }
   
 }

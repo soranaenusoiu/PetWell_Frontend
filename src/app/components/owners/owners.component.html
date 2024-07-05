@@ -1,22 +1,33 @@
 <div style="margin-left: 30px;">
 
-    <!-- <h3>Owners Management</h3>
-    <br><br> -->
-    <label>Owners Management</label>
-    <button type="button" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Del</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
-    <button type="button" class="btn btn-danger" style="background-color: green;">Edit</button>
-    <br>
-    <input type="text" id="ownerId" name="id" style="width: 50px">
-    <input type="text" id="ownerName" name="name" style="width: 250px">
-    <input type="text" id="ownerPhone" name="phone" style="width: 150px">
-    <input type="text" id="ownerEmail" name="mail" style="width: 250px">
-    <input type="text" id="ownerAddress" name="address" style="width: 200px">
+    <div>
+        <label>Owners Management</label>
+        <button type="button" (click)="clickAddButton()" class="btn btn-primary"
+            style="background-color: green;margin-left: 500px">Add</button>
+        <button type="button" (click)="clickFindButton()" class="btn btn-primary"
+            style="background-color: green;">Find</button>
+        <button type="button" (click)="clickEditButton()" class="btn btn-primary"
+            style="background-color: green;">Edit</button>
+        <button type="button" (click)="clickDeleteButton()" class="btn btn-primary"
+            style="background-color: green;">Delete</button>
+        <button type="button" (click)="clickResetButton()" class="btn btn-primary"
+            style="background-color: rgb(48, 127, 201);">Reset</button>
+    </div>
+    <div>
+        <input type="text" id="ownerId" name="id" style="width: 50px" value="{{ownerWork.id}}"
+            [(ngModel)]="ownerWork.id">
+        <input type="text" id="ownerName" name="name" style="width: 250px" value="{{ownerWork.name}}"
+            [(ngModel)]="ownerWork.name">
+        <input type="text" id="ownerPhone" name="phone" style="width: 150px" value="{{ownerWork.phone}}"
+            [(ngModel)]="ownerWork.phone">
+        <input type="text" id="ownerEmail" name="mail" style="width: 250px" value="{{ownerWork.email}}"
+            [(ngModel)]="ownerWork.email">
+        <input type="text" id="ownerAddress" name="address" style="width: 200px" value="{{ownerWork.address}}"
+            [(ngModel)]="ownerWork.address">
+    </div>
 
-        <!-- <a type="button" class="btn btn-success">Add Owner</a> -->
-    <br><br>
- <p>Owner list</p>
+    <p>Owner list</p>
+
     <table class="table table-striped table-hover  table-bordered" style="width:fit-content">
         <thead>
             <tr>
@@ -26,22 +37,16 @@
                 <th style="width:250px">Email</th>
                 <th style="width:200px">Address</th>
             </tr>
-        </thead> 
+        </thead>
         <tbody>
-            <tr *ngFor="let ow of ownersList">
+            <tr *ngFor="let ow of ownersList" (click)="clickListItemOw(ow)">
                 <td>{{ow.id}}</td>
                 <td>{{ow.name}}</td>
                 <td>{{ow.phone}}</td>
                 <td>{{ow.email}}</td>
                 <td>{{ow.address}}</td>
-                <!-- <td>
-                    <a type="button" class="btn btn-info" [routerLink]="['/owners/details', ow.ownerId]">Details</a> 
-                    <a type="button" class="btn btn-primary">Edit</a>
-                    <button type="button" class="btn btn-danger">Delete</button>      
-                </td> -->
             </tr>
         </tbody>
     </table>
-
 
 </div>
