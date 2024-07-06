@@ -45,7 +45,7 @@
         </thead>
     <!-- tbody>tr>td*5-->
         <tbody>
-            <tr *ngFor="let pet of petList">
+            <tr *ngFor="let pet of petList" (click)="clickListItemPet(pet)">
                 <td>{{pet.id}}</td>
                 <td>{{pet.species}}</td>
                 <td>{{pet.breed}}</td>

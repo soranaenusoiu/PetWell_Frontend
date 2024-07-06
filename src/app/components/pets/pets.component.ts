@@ -67,7 +67,7 @@ export class PetsComponent {
     }
 
     clickEditButton(){
-      
+
     }
 
     clickDeleteButton(){
@@ -89,7 +89,7 @@ export class PetsComponent {
       this.petWork.owner.name = "";
     } 
 
-  clickListItemOw(pet: Pet) {
+  clickListItemPet(pet: Pet) {
     this.petWork.id = pet.id;
     this.petWork.species = pet.species;
     this.petWork.breed = pet.breed;
