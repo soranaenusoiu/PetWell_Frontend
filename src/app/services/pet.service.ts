@@ -17,16 +17,10 @@ export class PetService {
 
 
   // HTTP POST REQUEST -> CREATE
-  // addPet(): Observable<Pet> {
-  //   let petToAdd =  {
-  //     species:"cat", 
-  //     breed:"common",
-  //     name :"Mr. Bear",
-  //     age:"1",
-  //     weight:"2.5"
-  //   };
-  //   return this.httpClient.post<Pet>(this.baseURL + "/pet/add/1", petToAdd);
-  // }
+  addPet(petToAdd:Pet): Observable<Pet> {
+    console.log("Pet add " + JSON.stringify(petToAdd))
+    return this.httpClient.post<Pet>(this.baseURL + "/pet/add/" + petToAdd.owner.id, petToAdd);
+  }
 
   //HTTP GET REQUEST  -> READ
   getAllPets(): Observable<Pet[]> {
@@ -40,7 +34,7 @@ export class PetService {
   }
 
   // HTTP PUT REQUEST -> UPDATE
-  putPet(): Observable<Pet> {
+  updatePet(): Observable<Pet> {
     const pet = {
       id: 2,
       species: "cat",
@@ -54,8 +48,7 @@ export class PetService {
   }
 
   // HTTP DELETE REQUEST -> DELETE
-  deletePet(): Observable<Pet> {
-    let petToDelete: number = 5;
+  deletePet(petToDelete: number): Observable<Pet> {
     return this.httpClient.delete<Pet>(this.backendURL + "/pet/delete/" + petToDelete);
   }
 

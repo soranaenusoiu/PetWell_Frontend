@@ -65,21 +65,52 @@ export class OwnersComponent {
       // console.log("Add owner test: " + JSON.stringify(this.ownerWork));
       this.owsService.addOwner(this.ownerWork).subscribe((resp: any) => {
         console.log("Add owner: " + JSON.stringify(resp));
-        // refresh veterinaries list
         this.refreshList();
       });
     }
 
     clickFindButton(){
-
+      if (this.ownerWork.name.length > 0) {
+        this.owsService.getOwnerByName(this.ownerWork.name).subscribe((data: Owner) => {
+          this.ownerWork = data;
+          console.log("Find owner by name: " + JSON.stringify(this.ownerWork));
+        })
+        return;
+      } 
+      if (this.ownerWork.phone.length > 0) {
+      this.owsService.getOwnerByPhone(this.ownerWork.phone).subscribe((data: Owner) => {
+        this.ownerWork = data;
+        console.log("Find owner by phone: " + JSON.stringify(this.ownerWork));
+      })
+      return;
+    }
+    // if (this.ownerWork.id.length > 0) {
+    //   this.owsService.getOwnerById(this.ownerWork.id).subscribe((data: Owner) => {
+    //     this.ownerWork = data;
+    //     console.log("Find owner by id: " + JSON.stringify(this.ownerWork));
+    //   })
+    //   return;
+    // }
     }
 
     clickEditButton(){
-
+      if (this.ownerWork.id == 0){
+        return;
+      }
+      this.owsService.updateOwner(this.ownerWork).subscribe((resp: any) => {
+        console.log("Update owner: " + JSON.stringify(resp));
+        this.refreshList();
+      });
     }
 
     clickDeleteButton(){
-
+      if (this.ownerWork.id == 0){
+        return;
+      }
+      this.owsService.deleteOwner(this.ownerWork.id).subscribe((resp: any) => {
+        console.log("Delete owner : " + JSON.stringify(resp));
+        this.refreshList();
+      });
     }
 
     clickResetButton() {
