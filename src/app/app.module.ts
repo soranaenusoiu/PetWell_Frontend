@@ -15,6 +15,7 @@ import { PetsComponent } from './components/pets/pets.component';
 import { VeterinariesComponent } from './components/veterinaries/veterinaries.component';
 import { SchedulesComponent } from './components/schedules/schedules.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
+import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
 
 
 @NgModule({
@@ -39,7 +40,14 @@ import { AppointmentsComponent } from './components/appointments/appointments.co
     MatButtonModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'shortDate' }
+    // }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  currentDate = new Date();
+}
+

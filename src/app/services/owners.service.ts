@@ -17,11 +17,18 @@ export class OwnersService {
 
 // HTTP POST REQUEST -> CREATE
 
+<<<<<<< Updated upstream
 
   addOwner(ownerAdd: Owner): Observable<Owner> {
   // console.log("Add owner test 2: " + JSON.stringify(ownerAdd));
     return this.httpClient.post<Owner>(this.baseURL + "/owner/add", ownerAdd);
   }
+=======
+addOwner(ownerAdd: Owner): Observable<Owner> {
+  console.log("Add owner test 2: " + JSON.stringify(ownerAdd));
+  return this.httpClient.post<Owner>(this.baseURL + "/owner/add", ownerAdd);
+}
+>>>>>>> Stashed changes
 
   //HTTP GET REQUEST  -> READ
   getAllOwners(): Observable<Owner[]> {

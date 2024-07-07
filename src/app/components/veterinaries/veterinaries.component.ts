@@ -12,7 +12,6 @@ export class VeterinariesComponent {
 
   veterinariesList: Veterinary[] = [];
   veterinaryWork: Veterinary = { "id": 0, "name": "", "phone": "", "mail": "", "speciality": "" };
-  selectedVeterinary: Veterinary
   tipSortList: string="sortByName";
 
   constructor(private vetsService: VeterinariesService) { }
@@ -22,19 +21,18 @@ export class VeterinariesComponent {
   }
 
   refreshList() {
-    console.log(".... tipSortList "+this.tipSortList);
     this.vetsService.getAllVeterinaries().subscribe((data: Veterinary[]) => {
       this.veterinariesList = data;
       console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));
+      if (this.tipSortList==="sortByName") {
+        this.clickOrdereByName();
+        return;
+      }
+      if (this.tipSortList==="sortBySpeciality") {
+        this.clickOrdereBySpeciality();
+        return;
+      }
     })
-    if (this.tipSortList==="sortByName") {
-      this.clickOrdereByName();
-      return;
-    }
-    if (this.tipSortList==="sortBySpeciality") {
-      this.clickOrdereBySpeciality();
-      return;
-    }
   }
 
   clickAddButton() {
@@ -42,20 +40,20 @@ export class VeterinariesComponent {
     if (this.veterinaryWork.name.length <= 0) return;
     this.vetsService.addVeterinary(this.veterinaryWork).subscribe((resp: any) => {
       console.log("Add veterinary: " + JSON.stringify(resp));
-      // refresh veterinaries list
       this.refreshList();
     });
   }
 
   clickDelButton() {
+    if (this.veterinaryWork.id <= 0) return;
     this.vetsService.deleteVeterinary(this.veterinaryWork.id).subscribe((resp: any) => {
       console.log("Delete veterinary : " + JSON.stringify(resp));
-      // refresh veterinaries list
       this.refreshList();
     });
   }
 
   clickFindButton() {
+    if (this.veterinaryWork.id <= 0) return;
     this.vetsService.getVeterinaryByName(this.veterinaryWork.name).subscribe((data: Veterinary) => {
       this.veterinaryWork = data;
       console.log("Find veterinary by name: " + JSON.stringify(this.veterinaryWork));
@@ -63,9 +61,9 @@ export class VeterinariesComponent {
   }
 
   clickEditButton() {
+    if (this.veterinaryWork.id <= 0) return;
     this.vetsService.updateVeterinary(this.veterinaryWork).subscribe((resp: any) => {
       console.log("Update veterinary: " + JSON.stringify(resp));
-      // refresh veterinaries list
       this.refreshList();
     });
   }

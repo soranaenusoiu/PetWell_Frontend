@@ -1,42 +1,58 @@
-
-
 <div style="margin-left: 10px;">
     <label>Schedules Management</label>
-    <button type="button" (click)="clickAddButton()" class="btn btn-danger" style="background-color: green;margin-left: 415px">Add</button>
+    <button type="button" (click)="clickAddButton()" class="btn btn-danger"
+        style="background-color: green;margin-left: 415px">Add</button>
     <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
-    <button type="button" (click)="clickEditButton()"class="btn btn-danger" style="background-color: green;">Edit</button>
-    <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
-    <button type="button" (click)="clickResetButton()" class="btn btn-danger" style="background-color: rgb(48, 127, 201);">Reset</button>
+    <button type="button" (click)="clickEditButton()" class="btn btn-danger"
+        style="background-color: green;">Edit</button>
+    <button type="button" (click)="clickDelButton()" class="btn btn-danger"
+        style="background-color: green;">Del</button>
+    <button type="button" (click)="clickResetButton()" class="btn btn-danger"
+        style="background-color: rgb(48, 127, 201);">Reset</button>
     <br>
-    <input type="text" id="scheduleId" name="schId" style="width: 50px" value="{{scheduleWork.id}}" [(ngModel)] = "scheduleWork.id">
-    <input type="text" id="scheduleStartTime" name="schStartTime" style="width: 250px" value="{{scheduleWork.stopTime}}" [(ngModel)] = "scheduleWork.startTime">
-    <input type="text" id="scheduleStopTime" name="schStopTime" style="width: 250px" value="{{scheduleWork.stopTime}}" [(ngModel)] = "scheduleWork.stopTime">
-    <input type="text" id="scheduleVeterinaryName" name="schVeterinaryName" style="width: 250px" value="{{scheduleWork.veterinary.name}}" [(ngModel)] = "scheduleWork.veterinary.name">
+    <input type="text" id="scheduleId" name="schId" style="width: 50px" [(ngModel)]="scheduleWork.id">
+    <input type="text" id="scheduleStartDay" name="schStartDay" style="width: 125px" [(ngModel)]="schDayWork.startDay">
+    <input type="text" id="scheduleStartTime" name="schStarTime" style="width: 125px"
+        [(ngModel)]="schDayWork.startTime">
+    <input type="text" id="scheduleStoptDay" name="schStopDay" style="width: 125px" [(ngModel)]="schDayWork.stopDay">
+    <input type="text" id="scheduleStopTime" name="schStopTime" style="width: 125px" [(ngModel)]="schDayWork.stopTime">
+    <input type="text" id="scheduleVeterinaryName" name="schVeterinaryName" style="width: 250px"
+        [(ngModel)]="scheduleWork.veterinary.name">
 
-    <br><br>
-<label>List of schedules for : </label>
-<input type="radio" name="option" id="option1" (click)="clickForAllVeterinarians()">
-<label for="option1">all veterinarians</label>
-<input type="radio" name="option" id="option2" (click)="clickOneVeterinary(scheduleWork.veterinary.name)">
-<label for="option2">one veterinary</label>
-<input type="radio" name="option" id="option2" (click)="clickOneVeterinaryOnemonth()">
-<label for="option2">one veterinary/one month</label>
+
+    <div class="mt-2">
+        <label>List of schedules for : </label>
+        <input type="radio" name="option" id="option1" (click)="clickForAllVeterinarians()" checked
+            [defaultValue]="true" value="allVeterinary" [(ngModel)]="tipForList">
+        <label for="option1">all veterinarians</label>
+        <input type="radio" name="option" id="option2" (click)="clickOneVeterinary(scheduleWork.veterinary.name)"
+            value="oneVeterinary" [(ngModel)]="tipForList">
+        <label for="option2">one veterinary</label>
+        <input type="radio" name="option" id="option3"
+            (click)="clickOneVeterinaryOnemonth(scheduleWork.veterinary.name,schDayWork.startDay)"
+             value="oneVeterinaryOneMonth" [(ngModel)]="tipForList">
+        <label for="option3">one veterinary/one month</label>
+    </div>
     <table class="table table-striped table-hover table-bordered" style="width:fit-content">
         <thead>
             <tr>
                 <th style="width:50px">Id</th>
-                <th style="width:250px">StartTime</th>
-                <th style="width:250px">StopTime</th>
+                <th style="width:125px">StartDay</th>
+                <th style="width:125px">StartTime</th>
+                <th style="width:125px">StopDay</th>
+                <th style="width:125px">StopTime</th>
                 <th style="width:250px">VeterinaryName</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let sch of schedulesList" (click)="clickListItemSch(sch)">
                 <td>{{sch.id}}</td>
-                <td>{{sch.startTime}}</td>
-                <td>{{sch.stopTime}}</td>
-                <td>{{sch.veterinary.name}}</td>
-             </tr>
+                <td>{{sch.startTime | date: 'yyyy-MM-dd'}}</td>
+                <td>{{sch.startTime | date: 'hh:mm'}}</td>
+                <td>{{sch.stopTime | date: 'yyyy-MM-dd'}}</td>
+                <td>{{sch.stopTime | date: 'hh:mm'}}</td>
+                <td>{{sch.veterinary.name }}</td>
+            </tr>
         </tbody>
     </table>
 

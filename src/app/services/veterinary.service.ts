@@ -15,23 +15,23 @@ import { HttpClient } from '@angular/common/http';
     constructor(private httpClient:HttpClient) { }
   
     addVeterinary(veterinaryAdd: Veterinary): Observable<Veterinary> {
-      return this.httpClient.post<Veterinary>(this.baseURL + "/veterinary/add", veterinaryAdd);
+      return this.httpClient.post<Veterinary>(this.backendURL + "/veterinary/add", veterinaryAdd);
     }
 
     getAllVeterinaries(): Observable<Veterinary[]> {
-      return this.httpClient.get<Veterinary[]>(this.baseURL + "/veterinary/getAll");
+      return this.httpClient.get<Veterinary[]>(this.backendURL + "/veterinary/getAll");
     }
     getVeterinaryByName(veterinaryName: string): Observable<Veterinary> {
-      return this.httpClient.get<Veterinary>(this.baseURL + "/veterinary/getByName/"+veterinaryName);
+      return this.httpClient.get<Veterinary>(this.backendURL + "/veterinary/getByName/"+veterinaryName);
     }
   
 
     updateVeterinary(veterinaryUpdate: Veterinary): Observable<Veterinary>{
-      return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/update", veterinaryUpdate);
+      return this.httpClient.put<Veterinary>(this.backendURL + "/veterinary/update", veterinaryUpdate);
     }
 
     deleteVeterinary(idToDelete: number): Observable<Veterinary>{
-      return this.httpClient.delete<Veterinary>(this.baseURL + "/veterinary/deleteById/"+idToDelete);
+      return this.httpClient.delete<Veterinary>(this.backendURL + "/veterinary/deleteById/"+idToDelete);
     }
  
   }
