@@ -28,9 +28,8 @@ export class PetService {
   }
 
   //HTTP GET REQUEST  -> READ
-  getPetsByOwner(): Observable<Pet> {
-    let name: string = "Matei Barbarasa";
-    return this.httpClient.get<Pet>(this.backendURL + "/pet/get_by_name", { params: new HttpParams().set('name', name) })
+  getPetsByOwner(name: string): Observable<Pet[]> {
+    return this.httpClient.get<Pet[]>(this.backendURL + "/pet/get_by_name", { params: new HttpParams().set('name', name) })
   }
 
   // HTTP PUT REQUEST -> UPDATE

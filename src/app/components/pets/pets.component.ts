@@ -63,7 +63,12 @@ export class PetsComponent {
     }
 
     clickFindButton(){
-
+      if (this.petWork.owner.name.length <= 0) return;
+      console.log("Find pet by owner name: " + JSON.stringify(this.petWork.owner.name));
+      this.petService.getPetsByOwner(this.petWork.owner.name).subscribe((data: Pet[]) => {
+        console.log("Pets list by owner name: " + JSON.stringify(this.petList));
+        this.petList = data;
+      });
     }
 
     clickEditButton(){
