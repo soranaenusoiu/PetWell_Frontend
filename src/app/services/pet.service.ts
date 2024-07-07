@@ -34,17 +34,8 @@ export class PetService {
   }
 
   // HTTP PUT REQUEST -> UPDATE
-  updatePet(): Observable<Pet> {
-    const pet = {
-      id: 2,
-      species: "cat",
-      breed: "common",
-      name: "Mrs. Cuddles",
-      age: "3",
-      weight: "3.7"
-    };
-
-    return this.httpClient.put<Pet>(this.baseURL + "/pet/update/2", pet);
+  updatePet(updatedPet: Pet): Observable<Pet> {
+    return this.httpClient.put<Pet>(this.baseURL + "/pet/update/" + updatedPet.id, updatedPet);
   }
 
   // HTTP DELETE REQUEST -> DELETE

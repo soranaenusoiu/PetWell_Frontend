@@ -67,7 +67,13 @@ export class PetsComponent {
     }
 
     clickEditButton(){
-
+      if (this.petWork.id <= 0){
+        return;
+      }
+      this.petService.updatePet(this.petWork).subscribe((resp: any) => {
+        console.log("Update pet: " + JSON.stringify(resp));
+        this.refreshList();
+      });
     }
 
     clickDeleteButton(){
