@@ -11,8 +11,8 @@
     <button type="button" (click)="clickResetButton()" class="btn btn-secondary"
         style="margin-left: 1px;">Reset</button>
 </div>
-<div class="container w-100">
-    <div class="col">
+<!-- <div style="background-color: #c007; min-width: 99vw; margin-left: 0.5vw;">
+    
         <input type="text" id="petId" name="id" value="{{petWork.id}}" [(ngModel)]="petWork.id">
         <input type="text" id="petSpecies" name="species" value="{{petWork.species}}" [(ngModel)]="petWork.species">
         <input type="text" id="petBreed" name="breed" value="{{petWork.breed}}" [(ngModel)]="petWork.breed">
@@ -20,8 +20,8 @@
         <input type="text" id="petAge" name="age" value="{{petWork.age}}" [(ngModel)]="petWork.age">
         <input type="text" id="petWeight" name="weight" value="{{petWork.weight}}" [(ngModel)]="petWork.weight">
         <input type="text" id="petOwner" name="owner" value="{{petWork.owner.name}}" [(ngModel)]="petWork.owner.name">
-    </div>
-</div>
+    
+</div> -->
 
 <div class="image-container" style="margin-top: 5px; margin-bottom: 5px;">
     <img [src]="imgPath1" alt="chameleon" class="image" style="margin-left: 30px;">
@@ -34,6 +34,15 @@
     <table class="table table-striped table-hover table-bordered" style="min-width: 99vw; margin-left: 0.5vw;">
         <thead>
             <tr>
+                <th><input class="w-100" type="text" id="petId" name="id" value="{{petWork.id}}" [(ngModel)]="petWork.id"></th>
+                <th><input class="w-100" type="text" id="petSpecies" name="species" value="{{petWork.species}}" [(ngModel)]="petWork.species"></th>
+                <th><input class="w-100" type="text" id="petBreed" name="breed" value="{{petWork.breed}}" [(ngModel)]="petWork.breed"></th>
+                <th><input class="w-100" type="text" id="petName" name="name" value="{{petWork.name}}" [(ngModel)]="petWork.name"></th>
+                <th><input class="w-100" type="text" id="petAge" name="age" value="{{petWork.age}}" [(ngModel)]="petWork.age"></th>
+                <th><input class="w-100" type="text" id="petWeight" name="weight" value="{{petWork.weight}}" [(ngModel)]="petWork.weight"></th>
+                <th><input class="w-100" type="text" id="petOwner" name="owner" value="{{petWork.owner.name}}" [(ngModel)]="petWork.owner.name"></th>
+            </tr>
+            <tr>
                 <th>Id</th>
                 <th>Species</th>
                 <th>Breed</th>
@@ -42,6 +51,7 @@
                 <th>Weight</th>
                 <th>Owner</th>
             </tr>
+            
         </thead>
         <!-- tbody>tr>td*5-->
         <tbody>
