@@ -1,7 +1,7 @@
 <div style="margin-left: 10px;">
     <label>Schedules Management</label>
     <button type="button" (click)="clickAddButton()" class="btn btn-danger"
-        style="background-color: green;margin-left: 415px">Add</button>
+        style="background-color: green;margin-left: 350px">Add</button>
     <button type="button" class="btn btn-danger" style="background-color: green;">Find</button>
     <button type="button" (click)="clickEditButton()" class="btn btn-danger"
         style="background-color: green;">Edit</button>
@@ -11,11 +11,11 @@
         style="background-color: rgb(48, 127, 201);">Reset</button>
     <br>
     <input type="text" id="scheduleId" name="schId" style="width: 50px" [(ngModel)]="scheduleWork.id">
-    <input type="text" id="scheduleStartDay" name="schStartDay" style="width: 125px" [(ngModel)]="schDayWork.startDay">
-    <input type="text" id="scheduleStartTime" name="schStarTime" style="width: 125px"
+    <input type="date" id="scheduleStartDay" name="schStartDay" style="width: 125px" [(ngModel)]="schDayWork.startDay">
+    <input type="time" id="scheduleStartTime" name="schStarTime" style="width: 125px"
         [(ngModel)]="schDayWork.startTime">
-    <input type="text" id="scheduleStoptDay" name="schStopDay" style="width: 125px" [(ngModel)]="schDayWork.stopDay">
-    <input type="text" id="scheduleStopTime" name="schStopTime" style="width: 125px" [(ngModel)]="schDayWork.stopTime">
+    <input type="date" id="scheduleStoptDay" name="schStopDay" style="width: 125px" [(ngModel)]="schDayWork.stopDay">
+    <input type="time" id="scheduleStopTime" name="schStopTime" style="width: 125px" [(ngModel)]="schDayWork.stopTime">
     <input type="text" id="scheduleVeterinaryName" name="schVeterinaryName" style="width: 250px"
         [(ngModel)]="scheduleWork.veterinary.name">
 
@@ -37,19 +37,19 @@
         <thead>
             <tr>
                 <th style="width:50px">Id</th>
-                <th style="width:125px">StartDay</th>
-                <th style="width:125px">StartTime</th>
-                <th style="width:125px">StopDay</th>
-                <th style="width:125px">StopTime</th>
-                <th style="width:250px">VeterinaryName</th>
+                <th style="width:125px">Init Day</th>
+                <th style="width:125px">Init Time</th>
+                <th style="width:125px">End Day</th>
+                <th style="width:125px">EndT ime</th>
+                <th style="width:250px">Veterinary Name</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let sch of schedulesList" (click)="clickListItemSch(sch)">
                 <td>{{sch.id}}</td>
-                <td>{{sch.startTime | date: 'yyyy-MM-dd'}}</td>
+                <td>{{sch.startTime | date: 'dd-MM-yyyy'}}</td>
                 <td>{{sch.startTime | date: 'hh:mm'}}</td>
-                <td>{{sch.stopTime | date: 'yyyy-MM-dd'}}</td>
+                <td>{{sch.stopTime | date: 'dd-MM-yyyy'}}</td>
                 <td>{{sch.stopTime | date: 'hh:mm'}}</td>
                 <td>{{sch.veterinary.name }}</td>
             </tr>

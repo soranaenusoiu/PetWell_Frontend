@@ -38,12 +38,6 @@ export class ScheduleService {
 
  
     updateSchedule(schedule: Schedule): Observable<Schedule> {
-      // let schedule:Schedule =  {
-      //   id:256,
-      //   startTime :"2024-06-07T12:12:00",
-      //   stopTime : "2024-06-07T12:12:44",
-      //   veterinary : {id:2,name:"name2",phone:"phone2",mail:"mail2",speciality:"speciality2"}
-      // };
       return this.httpClient.put<Schedule>(this.baseURL + "/schedule/update", schedule);
     } 
 
@@ -53,14 +47,6 @@ export class ScheduleService {
 }
 
 
-
-//   export class VeterinariesService {
-
-//   //HTTP GET REQUEST
-//   getByNameVeterinary(name: string): Observable<Veterinary> {
-//     let veterinary
-//     return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/getByName/"+name, veterinary);
-//   }
 
 
 
