@@ -106,9 +106,9 @@ export class SchedulesComponent {
     this.scheduleWork.veterinary.name = sch.veterinary.name;
     this.scheduleWork.veterinary.id = sch.veterinary.id;
     this.schDayWork.startDay = format(new Date(this.scheduleWork.startTime), 'yyyy-MM-dd');
-    this.schDayWork.startTime = format(new Date(this.scheduleWork.startTime), 'hh:mm');
+    this.schDayWork.startTime = format(new Date(this.scheduleWork.startTime), 'HH:mm');
     this.schDayWork.stopDay = format(new Date(this.scheduleWork.stopTime), 'yyyy-MM-dd');
-    this.schDayWork.stopTime = format(new Date(this.scheduleWork.stopTime), 'hh:mm');
+    this.schDayWork.stopTime = format(new Date(this.scheduleWork.stopTime), 'HH:mm');
   }
 
 

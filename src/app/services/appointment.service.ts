@@ -23,6 +23,10 @@ export class AppointmentService {
     return this.httpClient.get<Appointment[]>(this.baseURL + "/appointment/get/all");
   }
 
+  getFreeAppointments(idVeterinary: number, dateWork:string): Observable<Appointment[]> {
+    return this.httpClient.get<Appointment[]>(this.baseURL + "/appointment/getfree/"+idVeterinary+"/"+dateWork);
+  }
+
   updateAppointment(appointment: Appointment): Observable<Appointment> {
     return this.httpClient.put<Appointment>(this.baseURL + "/appointment/update", appointment);
   } 

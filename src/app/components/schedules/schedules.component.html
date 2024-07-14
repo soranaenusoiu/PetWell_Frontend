@@ -28,8 +28,7 @@
         <input type="radio" name="option" id="option2" (click)="clickOneVeterinary(scheduleWork.veterinary.name)"
             value="oneVeterinary" [(ngModel)]="tipForList">
         <label for="option2">one veterinary</label>
-        <input type="radio" name="option" id="option3"
-            (click)="clickOneVeterinaryOnemonth(scheduleWork.veterinary.name,schDayWork.startDay)"
+        <input type="radio" name="option" id="option3" (click)="clickOneVeterinaryOnemonth(scheduleWork.veterinary.name,schDayWork.startDay)"
              value="oneVeterinaryOneMonth" [(ngModel)]="tipForList">
         <label for="option3">one veterinary/one month</label>
     </div>
@@ -48,9 +47,9 @@
             <tr *ngFor="let sch of schedulesList" (click)="clickListItemSch(sch)">
                 <td>{{sch.id}}</td>
                 <td>{{sch.startTime | date: 'dd-MM-yyyy'}}</td>
-                <td>{{sch.startTime | date: 'hh:mm'}}</td>
+                <td>{{sch.startTime | date: 'HH:mm'}}</td>
                 <td>{{sch.stopTime | date: 'dd-MM-yyyy'}}</td>
-                <td>{{sch.stopTime | date: 'hh:mm'}}</td>
+                <td>{{sch.stopTime | date: 'HH:mm'}}</td>
                 <td>{{sch.veterinary.name }}</td>
             </tr>
         </tbody>
