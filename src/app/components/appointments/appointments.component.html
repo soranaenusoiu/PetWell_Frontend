@@ -12,10 +12,12 @@
         style="background-color: rgb(48, 127, 201);">Reset</button>
     <br>
     <input type="text" id="appId" name="id" style="width: 50px" [(ngModel)]="appointmentWork.id">
-    <input type="text" id="appOwnerName" name="OwnerName" style="width: 250px" [(ngModel)]="appointmentWork.pet.owner.name">
+    <input type="text" id="appOwnerName" name="OwnerName" style="width: 250px"
+        [(ngModel)]="appointmentWork.pet.owner.name">
     <input type="text" id="appPetName" name="petName" style="width: 150px" [(ngModel)]="appointmentWork.pet.name">
     <input type="text" id="appReason" name="reason" style="width: 200px" [(ngModel)]="appointmentWork.reason">
-    <input type="text" id="appVetName" name="veterinaryName" style="width: 250px"[(ngModel)]="appointmentWork.veterinary.name">
+    <input type="text" id="appVetName" name="veterinaryName" style="width: 250px"
+        [(ngModel)]="appointmentWork.veterinary.name">
     <input type="date" id="appInitDay" name="initDay" style="width: 120px" [(ngModel)]="schDayWork.startDay">
     <input type="time" id="appInitTime" name="initTime" style="width: 80px" [(ngModel)]="schDayWork.startTime">
     <input type="date" id="appEndTDay" name="endDay" style="width: 120px" [(ngModel)]="schDayWork.stopDay">
@@ -25,18 +27,22 @@
 <div class="ms-1">
     <!-- <p style="margin-left: 0.5vw;">Appointments list</p> -->
     <label>Type of list : </label>
-    <input type="radio" name="option" id="option1" checked
-    [defaultValue]="true" value="allAppointments" [(ngModel)]="tipForList" (click)="clickAllAppointments()">
+    <input type="radio" name="option" id="option1" checked [defaultValue]="true" value="allAppointments"
+        [(ngModel)]="tipForList" (click)="clickAllAppointments()">
     <label for="option1"> Appointments </label>
-    <input type="radio" name="option" id="option1" value="Owners" [(ngModel)]="tipForList" (click)="clickChoseOwners()" >
+    <input type="radio" name="option" id="option1" value="Owners" [(ngModel)]="tipForList" (click)="clickChoseOwners()">
     <label for="option2"> Owners </label>
-    <input type="radio" name="option" id="option2" value="Pets" [(ngModel)]="tipForList" (click)="clickChosePet(appointmentWork.pet.owner.name)" >
-    <label for="option3"> Pets </label>  
-    <input type="radio" name="option" id="option3" value="Veterinarias" [(ngModel)]="tipForList" (click)="clickChoseVeterinary()" >
+    <input type="radio" name="option" id="option2" value="Pets" [(ngModel)]="tipForList"
+        (click)="clickChosePet(appointmentWork.pet.owner.name)">
+    <label for="option3"> Pets </label>
+    <input type="radio" name="option" id="option3" value="Veterinarias" [(ngModel)]="tipForList"
+        (click)="clickChoseVeterinary()">
     <label for="option4"> Veterinarias </label>
-    <input type="radio" name="option" id="option4">
+    <input type="radio" name="option" id="option4" value="Schedules" [(ngModel)]="tipForList"
+        (click)="clickChoseSchedule(appointmentWork.veterinary.id, schDayWork.startDay)">
     <label for="option5"> Schedule veterinary</label>
-    <input type="radio" name="option" id="option5" (click)="freeTime(appointmentWork.veterinary.id, appointmentWork.initTime)">
+    <input type="radio" name="option" id="option5"
+        (click)="freeTime(appointmentWork.veterinary.id, appointmentWork.initTime)">
     <label for="option6">Free time slice veterinary</label>
 </div>
 <div class="ms-1">

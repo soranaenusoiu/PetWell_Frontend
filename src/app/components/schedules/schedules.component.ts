@@ -37,7 +37,7 @@ export class SchedulesComponent {
         return;
       }
       if (this.tipForList==="oneVeterinaryOneMonth") {
-        this.clickOneVeterinaryOnemonth(this.scheduleWork.veterinary.name,this.schDayWork.startDay);
+        this.clickOneVeterinaryOnemonth(this.scheduleWork.veterinary.id, this.schDayWork.startDay);
         return;
       }
     })
@@ -126,19 +126,24 @@ export class SchedulesComponent {
     this.scheduleService.getAllSchedules().subscribe((data: Schedule[]) => {
       this.schedulesList = data;
       console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
-      this.schedulesList = this.schedulesList.filter(predicatef)
+      this.schedulesList = this.schedulesList.filter(predicatef);
       function predicatef(value: Schedule) {
         return value.veterinary.name === nameVeterinary;
       }
     })
   }
 
-  clickOneVeterinaryOnemonth(nameVeterinary:string,dataFind:string) {
-    this.schedulesList = this.schedulesList.filter(predicatef)
-    function predicatef(value: Schedule) {
-      return ( value.veterinary.name === nameVeterinary &&
-        format(new Date(value.startTime), 'MM') ===format(new Date(dataFind), 'MM'));
-    }
+  clickOneVeterinaryOnemonth(veterinaryId:number,day:string) {
+    this.scheduleService.getByVetByMonth(veterinaryId,day ).subscribe((data: Schedule[]) => {
+      this.schedulesList = data;
+      console.log("One VeterinarY one month list: " + JSON.stringify(this.schedulesList));
+    })
+    // this.schedulesList = this.schedulesList.filter(predicatef)
+    // function predicatef(value: Schedule) {
+    //   return ( value.veterinary.name === nameVeterinary &&
+    //     format(new Date(value.startTime), 'MM') ===format(new Date(dataFind), 'MM'));
+    // }
+
   }
 
 }

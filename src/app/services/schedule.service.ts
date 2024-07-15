@@ -22,14 +22,16 @@ export class ScheduleService {
 
     getScheduleById(): Observable<Schedule> {
       let idToGet:number = 257;
-      //let scheduleToGet:Schedule;
       return this.httpClient.get<Schedule>(this.baseURL + "/schedule/getById/"+idToGet);
     }
 
-    getByVetByMonth(): Observable<Schedule[]> {
-      let  veterinary_id: number = 2;
-      let month: number =7;
-      return this.httpClient.get<Schedule[]>(this.baseURL + "/schedule/getByVetByMonth/"+veterinary_id+"/"+month);
+    getByVetByMonth(veterinaryId: number, day: string): Observable<Schedule[]> {
+      // let  veterinary_id: number = 2;
+      // console.log("Day: " + day);
+      let month: number = new Date(day).getMonth() + 1;
+      // console.log("Month: " + month);
+      // console.log("vet id: " + veterinaryId);
+      return this.httpClient.get<Schedule[]>(this.baseURL + "/schedule/getByVetByMonth/"+veterinaryId+"/"+month);
     }
 
     getAllSchedules(): Observable<Schedule[]> {

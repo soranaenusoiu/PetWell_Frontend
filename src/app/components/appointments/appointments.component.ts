@@ -7,10 +7,12 @@ import { Pet } from 'src/app/interfaces/pet';
 import { Owner } from 'src/app/interfaces/owner';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { VeterinariesService } from 'src/app/services/veterinary.service';
+import { ScheduleService } from 'src/app/services/schedule.service';
 import { PetService } from 'src/app/services/pet.service';
 import { OwnersService } from 'src/app/services/owners.service';
 import { format } from 'date-fns';
 import { VeterinariesComponent } from '../veterinaries/veterinaries.component';
+import { Schedule } from 'src/app/interfaces/schedule';
 
 
 
@@ -32,10 +34,11 @@ export class AppointmentsComponent {
   petList: Pet[] = [];
   ownerList: Owner[] = [];
   veterinaryList: Veterinary[] = [];
+  scheduleList: Schedule[] = [];
   tipForList: string = "allAppointments";
 
   constructor(private appointmentService: AppointmentService, private vetsService: VeterinariesService,
-    private ownerService: OwnersService, private petService: PetService) { }
+    private ownerService: OwnersService, private petService: PetService, private schService: ScheduleService) { }
 
   ngOnInit(): void {
     this.refreshList();
@@ -64,6 +67,7 @@ export class AppointmentsComponent {
         this.appointmentService.addAppointment(this.appointmentWork).subscribe((resp: any) => {
           console.log("Appointment added: " + JSON.stringify(resp));
           this.refreshList();
+          this.tipForList = "allAppointments";
         })
       })
     });
@@ -112,10 +116,7 @@ export class AppointmentsComponent {
     this.appointmentWork.veterinary.name = "";
     this.appointmentWork.initTime = "";
     this.appointmentWork.endTime = "";
-    this.schDayWork.startDay = "";
-    this.schDayWork.startTime = "";
-    this.schDayWork.stopDay = "";
-    this.schDayWork.stopTime = "";
+    this.initSchDayWork();
   }
 
   clickListItemApp(app: Appointment) {
@@ -159,10 +160,7 @@ export class AppointmentsComponent {
     this.appointmentWork.pet.name = "";
     this.appointmentWork.reason = "";
     this.appointmentWork.veterinary.name = "";
-    this.schDayWork.startDay = "";
-    this.schDayWork.startTime = "";
-    this.schDayWork.stopDay = "";
-    this.schDayWork.stopTime = "";
+    this.initSchDayWork();
     this.ownerService.getAllOwners().subscribe((data: Owner[]) => {
       this.ownerList = data;
       console.log("All owners list: " + JSON.stringify(this.ownerList));
@@ -196,10 +194,7 @@ export class AppointmentsComponent {
     this.appointmentWork.pet.name = "";
     this.appointmentWork.reason = "";
     this.appointmentWork.veterinary.name = "";
-    this.schDayWork.startDay = "";
-    this.schDayWork.startTime = "";
-    this.schDayWork.stopDay = "";
-    this.schDayWork.stopTime = "";
+    this.initSchDayWork();
     this.petService.getPetsByOwner(ownerChosen).subscribe((data: Pet[]) => {
       this.petList = data;
       console.log("All pet/owners list: " + JSON.stringify(this.petList));
@@ -228,10 +223,11 @@ export class AppointmentsComponent {
   clickChoseVeterinary() {
     // alert("Veterinary time");
     this.appointmentWork.veterinary.name = "";
-    this.schDayWork.startDay = "";
-    this.schDayWork.startTime = "";
-    this.schDayWork.stopDay = "";
-    this.schDayWork.stopTime = "";
+    this.initSchDayWork();
+    this.schDayWork.startDay = format(new Date(), 'yyyy-MM-dd');
+    this.schDayWork.startTime = format(new Date(), 'HH:mm');
+    // this.schDayWork.stopDay = format(new Date(), 'yyyy-MM-dd');
+    // this.schDayWork.stopTime = format(new Date(), 'HH:mm');
     this.vetsService.getAllVeterinaries().subscribe((data: Veterinary[]) => {
       this.veterinaryList = data;
       console.log("All verterinary list: " + JSON.stringify(this.veterinaryList));
@@ -244,7 +240,7 @@ export class AppointmentsComponent {
         app = new Appointment;
         petChose = new Pet;
         ownerChose = new Owner;
-        ownerChose.name="";
+        ownerChose.name = "";
         vetChose = new Veterinary;
         petChose.owner = ownerChose;
         petChose.name = "";
@@ -262,16 +258,76 @@ export class AppointmentsComponent {
     })
   }
 
+  clickChoseSchedule(veterinaryId: number, day: string) {
+    // alert("Schedule time");
+    // this.appointmentWork.veterinary.name = "";
+    // this.initSchDayWork();
+    this.schService.getByVetByMonth(veterinaryId, day).subscribe((data: Schedule[]) => {
+      this.scheduleList = data;
+      console.log("All schedule/veterinary/month list: " + JSON.stringify(this.scheduleList));
+      this.appointmentsist = [];
+      let app: Appointment = { "id": 0, "initTime": "", "endTime": "", "reason": "", "diagnosis": "", "treatment": "", "veterinary": this.veterinaryWork, "pet": this.petWork };
+      let ownerChose: Owner;
+      let petChose: Pet;
+      let vetChose: Veterinary;
+      this.scheduleList.forEach((sch: Schedule) => {
+        app = new Appointment;
+        petChose = new Pet;
+        ownerChose = new Owner;
+        ownerChose.name = "";
+        vetChose = new Veterinary;
+        petChose.owner = ownerChose;
+        petChose.name = "";
+        vetChose.name = "";
+        vetChose.id = 0;
+        app.veterinary = vetChose;
+        app.pet = petChose;
+        app.reason = "";
+        app.initTime = sch.startTime;
+        app.endTime = sch.stopTime;
+        console.log("App: " + JSON.stringify(app));
+        this.appointmentsist.push(app);
+      })
+      console.log("All schedule one veterinary one month listy: " + JSON.stringify(this.veterinaryList));
+    })
+  }
+
   freeTime(veterinaryId: number, dayWork: string) {
-    // alert("free time");
     console.log("Appointments free ___ : " + JSON.stringify(this.appointmentsist));
     this.appointmentService.getFreeAppointments(veterinaryId, dayWork).subscribe((data: Appointment[]) => {
       this.appointmentsist = data;
-      this.petWork.name = "";
-      this.appointmentsist.forEach(app => (app.pet = this.petWork, app.pet.owner = this.ownerWork, app.veterinary = this.veterinaryWork));
+      let ownerChose: Owner;
+      let petChose: Pet;
+      let vetChose: Veterinary;
+      this.appointmentsist.forEach(app => {
+        ownerChose = new Owner;
+        ownerChose.name = "";
+        petChose = new Pet;
+        petChose.owner = ownerChose;
+        petChose.name = "";
+        vetChose = new Veterinary;
+        vetChose.name = "";
+        vetChose.id = 0;
+        app.veterinary = vetChose;
+        app.pet = petChose;
+        app.reason = "";
+        // app.initTime = sch.startTime;
+        // app.endTime = sch.stopTime;
+
+        // app.pet = this.petWork;
+        // app.pet.owner = this.ownerWork; 
+        // app.veterinary = this.veterinaryWork;
+      });
       console.log("Appointments FREE0 list: " + veterinaryId + " " + dayWork);
       console.log("Appointments FREE1 list: " + JSON.stringify(this.appointmentsist));
     });
+  }
+
+  initSchDayWork() {
+    this.schDayWork.startDay = "";
+    this.schDayWork.startTime = "";
+    this.schDayWork.stopDay = "";
+    this.schDayWork.stopTime = "";
   }
 
 
