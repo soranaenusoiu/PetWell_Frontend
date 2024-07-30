@@ -29,9 +29,9 @@
 
 <p style="margin-left: 0.5vw;">Pet list</p>
 
-<div>
+<div class="d-flex justify-content-center">
     <!-- table>thead>tr>td*5 -->
-    <table class="table table-striped table-hover table-bordered" style="min-width: 99vw; margin-left: 0.5vw;">
+    <table class="table table-striped table-hover table-bordered" style="min-width: 99vw; margin-left: 0.5vw; margin-right: 0.5vw;">
         <thead>
             <tr>
                 <th><input class="w-100" type="text" id="petId" name="id" value="{{petWork.id}}" [(ngModel)]="petWork.id"></th>
@@ -51,7 +51,6 @@
                 <th>Weight</th>
                 <th>Owner</th>
             </tr>
-            
         </thead>
         <!-- tbody>tr>td*5-->
         <tbody>
@@ -64,7 +63,6 @@
                 <td>{{pet.weight}}</td>
                 <td>{{pet.owner.name}}</td>
             </tr>
-
         </tbody>
     </table>
 </div>
