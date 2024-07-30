@@ -2,17 +2,12 @@ import { DatePipe, formatDate } from '@angular/common';
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
 import { Schedule } from 'src/app/interfaces/schedule';
+import { ScheduleDay } from 'src/app/interfaces/scheduleday';
 import { Veterinary } from 'src/app/interfaces/veterinary';
 import { ScheduleService } from 'src/app/services/schedule.service';
 import { VeterinariesService } from 'src/app/services/veterinary.service';
 import { format } from 'date-fns';
 
-class ScheduleDay {
-  startDay: string;
-  startTime: string;
-  stopDay: string;
-  stopTime: string;
-}
 
 @Component({
   selector: 'app-schedules',
@@ -36,13 +31,13 @@ export class SchedulesComponent {
   refreshList() {
     this.scheduleService.getAllSchedules().subscribe((data: Schedule[]) => {
       this.schedulesList = data;
-      console.log("Sched list: " + JSON.stringify(this.schedulesList));
+      console.log("Schedule list: " + JSON.stringify(this.schedulesList));
       if (this.tipForList==="oneVeterinary") {
         this.clickOneVeterinary(this.scheduleWork.veterinary.name);
         return;
       }
       if (this.tipForList==="oneVeterinaryOneMonth") {
-        this.clickOneVeterinaryOnemonth(this.scheduleWork.veterinary.name,this.schDayWork.startDay);
+        this.clickOneVeterinaryOnemonth(this.scheduleWork.veterinary.id, this.schDayWork.startDay);
         return;
       }
     })
@@ -79,7 +74,7 @@ export class SchedulesComponent {
     this.scheduleWork.stopTime = this.schDayWork.stopDay + "T" + this.schDayWork.stopTime;
     this.vetsService.getVeterinaryByName(this.scheduleWork.veterinary.name).subscribe((data: Veterinary) => {
       this.scheduleWork.veterinary = data;
-      console.log("Veterinary found: " + JSON.stringify(this.scheduleWork));
+      console.log("Veterinary found: " + JSON.stringify(this.scheduleWork.veterinary));
       this.scheduleService.updateSchedule(this.scheduleWork).subscribe((resp: any) => {
         console.log("Schedule add: " + JSON.stringify(resp));
         this.refreshList();
@@ -111,9 +106,9 @@ export class SchedulesComponent {
     this.scheduleWork.veterinary.name = sch.veterinary.name;
     this.scheduleWork.veterinary.id = sch.veterinary.id;
     this.schDayWork.startDay = format(new Date(this.scheduleWork.startTime), 'yyyy-MM-dd');
-    this.schDayWork.startTime = format(new Date(this.scheduleWork.startTime), 'hh:mm');
+    this.schDayWork.startTime = format(new Date(this.scheduleWork.startTime), 'HH:mm');
     this.schDayWork.stopDay = format(new Date(this.scheduleWork.stopTime), 'yyyy-MM-dd');
-    this.schDayWork.stopTime = format(new Date(this.scheduleWork.stopTime), 'hh:mm');
+    this.schDayWork.stopTime = format(new Date(this.scheduleWork.stopTime), 'HH:mm');
   }
 
 
@@ -131,18 +126,24 @@ export class SchedulesComponent {
     this.scheduleService.getAllSchedules().subscribe((data: Schedule[]) => {
       this.schedulesList = data;
       console.log("Veterinaries list: " + JSON.stringify(this.schedulesList));
-      this.schedulesList = this.schedulesList.filter(predicatef)
+      this.schedulesList = this.schedulesList.filter(predicatef);
       function predicatef(value: Schedule) {
         return value.veterinary.name === nameVeterinary;
       }
     })
   }
 
-  clickOneVeterinaryOnemonth(nameVeterinary:string,dataFind:string) {
-    this.schedulesList = this.schedulesList.filter(predicatef)
-    function predicatef(value: Schedule) {
-      return ( value.veterinary.name === nameVeterinary && value.startTime.substring(6,7)===dataFind.substring(6,7));
-    }
+  clickOneVeterinaryOnemonth(veterinaryId:number,day:string) {
+    this.scheduleService.getByVetByMonth(veterinaryId,day ).subscribe((data: Schedule[]) => {
+      this.schedulesList = data;
+      console.log("One VeterinarY one month list: " + JSON.stringify(this.schedulesList));
+    })
+    // this.schedulesList = this.schedulesList.filter(predicatef)
+    // function predicatef(value: Schedule) {
+    //   return ( value.veterinary.name === nameVeterinary &&
+    //     format(new Date(value.startTime), 'MM') ===format(new Date(dataFind), 'MM'));
+    // }
+
   }
 
 }

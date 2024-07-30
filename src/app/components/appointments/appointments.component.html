@@ -1,47 +1,79 @@
 <div class="ms-1">
     <label>Appointments Management</label>
-    <button type="button" (click)="clickAddButton()" class="btn btn-danger" style="background-color: green;margin-left: 500px">Add</button>
-    <button type="button" (click)="clickFindButton()" class="btn btn-danger" style="background-color: green;">Find</button>
-    <button type="button" (click)="clickEditButton()" class="btn btn-danger" style="background-color: green;">Edit</button>
-    <button type="button" (click)="clickDelButton()" class="btn btn-danger" style="background-color: green;">Del</button>
-    <button type="button" (click)="clickResetButton()" class="btn btn-danger" style="background-color: rgb(48, 127, 201);">Reset</button>   
+    <button type="button" (click)="clickAddButton()" class="btn btn-danger"
+        style="background-color: green;margin-left: 800px">Add</button>
+    <button type="button" (click)="clickFindButton()" class="btn btn-danger"
+        style="background-color: green;">Find</button>
+    <button type="button" (click)="clickEditButton()" class="btn btn-danger"
+        style="background-color: green;">Edit</button>
+    <button type="button" (click)="clickDelButton()" class="btn btn-danger"
+        style="background-color: green;">Del</button>
+    <button type="button" (click)="clickResetButton()" class="btn btn-danger"
+        style="background-color: rgb(48, 127, 201);">Reset</button>
     <br>
-    <input type="text" id="appId" name="id" style="width: 40px"  value="{{appointmentWork.id}}"  [(ngModel)] = "appointmentWork.id"> 
-    <input type="text" id="appOwnerName" name="name" style="width: 200px"  value="{{appointmentWork.pet.owner.name}}" [(ngModel)] = "appointmentWork.pet.owner.name">
-    <input type="text" id="appPetName" name="phone" style="width: 150px"  value="{{appointmentWork.pet.name}}" [(ngModel)] = "appointmentWork.pet.name" >
-    <input type="text" id="appVetName" name="mail" style="width: 200px"  value="{{appointmentWork.veterinary.name}}" [(ngModel)] = "appointmentWork.veterinary.name">
-    <input type="text" id="appInitTime" name="speciality" style="width: 150px" value="{{appointmentWork.initTime}}" [(ngModel)] = "appointmentWork.initTime" >
-    <input type="text" id="appEndTime" name="speciality" style="width: 150px" value="{{appointmentWork.endTime}}" [(ngModel)] = "appointmentWork.endTime" >
-    <input type="text" id="appReason" name="speciality" style="width: 200px" value="{{appointmentWork.reason}}" [(ngModel)] = "appointmentWork.reason" >
-    <!-- <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.diagnosis}}" [(ngModel)] = "veterinaryWork.speciality" >
-    <input type="text" id="vetSpeciality" name="speciality" style="width: 200px" value="{{appointmentWork.treatment}}" [(ngModel)] = "veterinaryWork.speciality" > -->
-    <br><br>
+    <input type="text" id="appId" name="id" style="width: 50px" [(ngModel)]="appointmentWork.id">
+    <input type="text" id="appOwnerName" name="OwnerName" style="width: 250px"
+        [(ngModel)]="appointmentWork.pet.owner.name">
+    <input type="text" id="appPetName" name="petName" style="width: 150px" [(ngModel)]="appointmentWork.pet.name">
+    <input type="text" id="appReason" name="reason" style="width: 200px" [(ngModel)]="appointmentWork.reason">
+    <input type="text" id="appVetName" name="veterinaryName" style="width: 250px"
+        [(ngModel)]="appointmentWork.veterinary.name">
+    <input type="date" id="appInitDay" name="initDay" style="width: 120px" [(ngModel)]="schDayWork.startDay">
+    <input type="time" id="appInitTime" name="initTime" style="width: 80px" [(ngModel)]="schDayWork.startTime">
+    <input type="date" id="appEndTDay" name="endDay" style="width: 120px" [(ngModel)]="schDayWork.stopDay">
+    <input type="time" id="appEndTime" name="endTime" style="width: 80px" [(ngModel)]="schDayWork.stopTime">
 
-    <!-- <label>List of veterinarians ordered by : </label>
-    <input type="radio" name="option" id="option1" (click)="clickOrdereByName()">
-    <label for="option1">  Name</label>
-    <input type="radio" name="option" id="option2" (click)="clickOrdereBySpeciality()">
-    <label for="option2">Speciality</label> -->
-
-     <!--<table class="table table-striped table-hover table-bordered" style="width:fit-content" id="abc">
-         <thead>
+</div>
+<div class="ms-1">
+    <!-- <p style="margin-left: 0.5vw;">Appointments list</p> -->
+    <label>Type of list : </label>
+    <input type="radio" name="option" id="option1" checked [defaultValue]="true" value="allAppointments"
+        [(ngModel)]="tipForList" (click)="clickAllAppointments()">
+    <label for="option1"> Appointments </label>
+    <input type="radio" name="option" id="option1" value="Owners" [(ngModel)]="tipForList" (click)="clickChoseOwners()">
+    <label for="option2"> Owners </label>
+    <input type="radio" name="option" id="option2" value="Pets" [(ngModel)]="tipForList"
+        (click)="clickChosePet(appointmentWork.pet.owner.name)">
+    <label for="option3"> Pets </label>
+    <input type="radio" name="option" id="option3" value="Veterinarias" [(ngModel)]="tipForList"
+        (click)="clickChoseVeterinary()">
+    <label for="option4"> Veterinarias </label>
+    <input type="radio" name="option" id="option4" value="Schedules" [(ngModel)]="tipForList"
+        (click)="clickChoseSchedule(appointmentWork.veterinary.id, schDayWork.startDay)">
+    <label for="option5"> Schedule veterinary</label>
+    <input type="radio" name="option" id="option5"
+        (click)="freeTime(appointmentWork.veterinary.id, appointmentWork.initTime)">
+    <label for="option6">Free time slice veterinary</label>
+</div>
+<div class="ms-1">
+    <table class="table table-striped table-hover table-bordered" style="width:fit-content">
+        <thead>
             <tr>
-                <th style="width:50px">Id</th>
-                <th style="width:250px">Name</th>
-                <th style="width:150px">Phone</th>
-                <th style="width:250px">mail</th>
-                <th style="width:200px">Speciality</th>
+                <th style="width:50px">id</th>
+                <th style="width:250px">owner name</th>
+                <th style="width:150px">pet name</th>
+                <th style="width:200px">reason</th>
+                <th style="width:250px">veterinary name</th>
+                <th style="width:100px">init date</th>
+                <th style="width:100px">init time</th>
+                <th style="width:100px">end date</th>
+                <th style="width:100px">end time</th>
             </tr>
         </thead>
+
         <tbody>
-            <tr *ngFor="let vet of veterinariesList" (click)="clickListItemVet(vet)">
-                <td>{{vet.id}}</td>
-                <td>{{vet.name}}</td>
-                <td>{{vet.phone}}</td>
-                <td>{{vet.mail}}</td>
-                <td>{{vet.speciality}}</td>
+            <tr *ngFor="let app of appointmentsist" (click)="clickListItemApp(app)">
+                <td>{{app.id}}</td>
+                <td>{{app.pet.owner.name}}</td>
+                <td>{{app.pet.name}}</td>
+                <td>{{app.reason}}</td>
+                <td>{{app.veterinary.name}}</td>
+                <td>{{app.initTime | date :"dd/MM/yyyy"}}</td>
+                <td>{{app.initTime | date :"HH:mm"}}</td>
+                <td>{{app.endTime | date :"dd/MM/yyyy"}}</td>
+                <td>{{app.endTime | date :"HH:mm"}}</td>
             </tr>
-        </tbody> 
-    </table> -->
+        </tbody>
+    </table>
 
 </div>

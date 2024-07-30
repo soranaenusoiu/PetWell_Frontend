@@ -22,14 +22,16 @@ export class ScheduleService {
 
     getScheduleById(): Observable<Schedule> {
       let idToGet:number = 257;
-      //let scheduleToGet:Schedule;
       return this.httpClient.get<Schedule>(this.baseURL + "/schedule/getById/"+idToGet);
     }
 
-    getByVetByMonth(): Observable<Schedule[]> {
-      let  veterinary_id: number = 2;
-      let month: number =7;
-      return this.httpClient.get<Schedule[]>(this.baseURL + "/schedule/getByVetByMonth/"+veterinary_id+"/"+month);
+    getByVetByMonth(veterinaryId: number, day: string): Observable<Schedule[]> {
+      // let  veterinary_id: number = 2;
+      // console.log("Day: " + day);
+      let month: number = new Date(day).getMonth() + 1;
+      // console.log("Month: " + month);
+      // console.log("vet id: " + veterinaryId);
+      return this.httpClient.get<Schedule[]>(this.baseURL + "/schedule/getByVetByMonth/"+veterinaryId+"/"+month);
     }
 
     getAllSchedules(): Observable<Schedule[]> {
@@ -38,12 +40,6 @@ export class ScheduleService {
 
  
     updateSchedule(schedule: Schedule): Observable<Schedule> {
-      // let schedule:Schedule =  {
-      //   id:256,
-      //   startTime :"2024-06-07T12:12:00",
-      //   stopTime : "2024-06-07T12:12:44",
-      //   veterinary : {id:2,name:"name2",phone:"phone2",mail:"mail2",speciality:"speciality2"}
-      // };
       return this.httpClient.put<Schedule>(this.baseURL + "/schedule/update", schedule);
     } 
 
@@ -53,14 +49,6 @@ export class ScheduleService {
 }
 
 
-
-//   export class VeterinariesService {
-
-//   //HTTP GET REQUEST
-//   getByNameVeterinary(name: string): Observable<Veterinary> {
-//     let veterinary
-//     return this.httpClient.put<Veterinary>(this.baseURL + "/veterinary/getByName/"+name, veterinary);
-//   }
 
 
 

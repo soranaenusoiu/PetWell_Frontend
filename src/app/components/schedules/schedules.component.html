@@ -13,8 +13,8 @@
     <input type="text" id="scheduleStartDay" name="schStartDay" style="width: 125px" [(ngModel)]="schDayWork.startDay">
     <input type="text" id="scheduleStartTime" name="schStarTime" style="width: 125px"
         [(ngModel)]="schDayWork.startTime">
-    <input type="text" id="scheduleStoptDay" name="schStopDay" style="width: 125px" [(ngModel)]="schDayWork.stopDay">
-    <input type="text" id="scheduleStopTime" name="schStopTime" style="width: 125px" [(ngModel)]="schDayWork.stopTime">
+    <input type="date" id="scheduleStoptDay" name="schStopDay" style="width: 125px" [(ngModel)]="schDayWork.stopDay">
+    <input type="time" id="scheduleStopTime" name="schStopTime" style="width: 125px" [(ngModel)]="schDayWork.stopTime">
     <input type="text" id="scheduleVeterinaryName" name="schVeterinaryName" style="width: 250px"
         [(ngModel)]="scheduleWork.veterinary.name"> -->
 
@@ -63,10 +63,10 @@
         <tbody>
             <tr *ngFor="let sch of schedulesList" (click)="clickListItemSch(sch)">
                 <td>{{sch.id}}</td>
-                <td>{{sch.startTime | date: 'yyyy-MM-dd'}}</td>
-                <td>{{sch.startTime | date: 'hh:mm'}}</td>
-                <td>{{sch.stopTime | date: 'yyyy-MM-dd'}}</td>
-                <td>{{sch.stopTime | date: 'hh:mm'}}</td>
+                <td>{{sch.startTime | date: 'dd-MM-yyyy'}}</td>
+                <td>{{sch.startTime | date: 'HH:mm'}}</td>
+                <td>{{sch.stopTime | date: 'dd-MM-yyyy'}}</td>
+                <td>{{sch.stopTime | date: 'HH:mm'}}</td>
                 <td>{{sch.veterinary.name }}</td>
             </tr>
         </tbody>
