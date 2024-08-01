@@ -305,7 +305,7 @@ export class AppointmentsComponent {
         console.log("App: " + JSON.stringify(app));
         this.appointmentsist.push(app);
       })
-      console.log("All schedule one veterinary one month listy: " + JSON.stringify(this.veterinaryList));
+      console.log("All schedule one veterinary one month listy: " + JSON.stringify(this.scheduleList));
     })
   }
 
