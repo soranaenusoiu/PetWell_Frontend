@@ -29,23 +29,24 @@
         value="oneVeterinary" [(ngModel)]="tipForList">
     <label for="option2">one veterinary</label>
     <input type="radio" name="option" id="option3"
-        (click)="clickOneVeterinaryOnemonth(scheduleWork.veterinary.name,schDayWork.startDay)"
+        (click)="clickOneVeterinaryOnemonth(scheduleWork.veterinary.id, schDayWork.startDay)"
         value="oneVeterinaryOneMonth" [(ngModel)]="tipForList">
     <label for="option3">one veterinary/one month</label>
 </div>
 
 <div>
-    <table class="table table-striped table-hover table-bordered" style="min-width: 99vw; margin-left: 0.5vw; margin-right: 0.5vw;">
+    <table class="table table-striped table-hover table-bordered"
+        style="min-width: 99vw; margin-left: 0.5vw; margin-right: 0.5vw;">
         <thead>
             <tr>
                 <th><input class="w-100" type="text" id="scheduleId" name="schId" [(ngModel)]="scheduleWork.id"></th>
-                <th><input class="w-100" type="text" id="scheduleStartDay" name="schStartDay"
+                <th><input class="w-100" type="date" id="scheduleStartDay" name="schStartDay"
                         [(ngModel)]="schDayWork.startDay"></th>
-                <th><input class="w-100" type="text" id="scheduleStartTime" name="schStarTime"
+                <th><input class="w-100" type="time" id="scheduleStartTime" name="schStarTime"
                         [(ngModel)]="schDayWork.startTime"></th>
-                <th><input class="w-100" type="text" id="scheduleStoptDay" name="schStopDay"
+                <th><input class="w-100" type="date" id="scheduleStoptDay" name="schStopDay"
                         [(ngModel)]="schDayWork.stopDay"></th>
-                <th><input class="w-100" type="text" id="scheduleStopTime" name="schStopTime"
+                <th><input class="w-100" type="time" id="scheduleStopTime" name="schStopTime"
                         [(ngModel)]="schDayWork.stopTime"></th>
                 <th><input class="w-100" type="text" id="scheduleVeterinaryName" name="schVeterinaryName"
                         [(ngModel)]="scheduleWork.veterinary.name"></th>
@@ -72,5 +73,3 @@
         </tbody>
     </table>
 </div>
-
-

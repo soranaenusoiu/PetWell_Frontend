@@ -37,7 +37,8 @@ export class VeterinariesComponent {
 
   clickAddButton() {
     this.veterinaryWork.id = 0;
-    if (this.veterinaryWork.name.length <= 0) return;
+    if (this.veterinaryWork.name.trim().length <= 0) return;
+    this.veterinaryWork.name = this.veterinaryWork.name.trim();
     this.vetsService.addVeterinary(this.veterinaryWork).subscribe((resp: any) => {
       console.log("Add veterinary: " + JSON.stringify(resp));
       this.refreshList();
@@ -53,10 +54,11 @@ export class VeterinariesComponent {
   }
 
   clickFindButton() {
-    if (this.veterinaryWork.id <= 0) return;
+ //   if (this.veterinaryWork.id <= 0) return;
+ console.log("Find veterinary by NAME   : " + JSON.stringify(this.veterinaryWork.name));
     this.vetsService.getVeterinaryByName(this.veterinaryWork.name).subscribe((data: Veterinary) => {
       this.veterinaryWork = data;
-      console.log("Find veterinary by name: " + JSON.stringify(this.veterinaryWork));
+      console.log("Find veterinary by NAME: " + JSON.stringify(this.veterinaryWork));
     })
   }
 

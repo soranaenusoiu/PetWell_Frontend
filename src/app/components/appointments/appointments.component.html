@@ -1,17 +1,17 @@
-<div class="ms-1">
+<div class="container" style="margin-bottom: 5px;">
     <label>Appointments Management</label>
-    <button type="button" (click)="clickAddButton()" class="btn btn-danger"
-        style="background-color: green;margin-left: 800px">Add</button>
-    <button type="button" (click)="clickFindButton()" class="btn btn-danger"
-        style="background-color: green;">Find</button>
-    <button type="button" (click)="clickEditButton()" class="btn btn-danger"
-        style="background-color: green;">Edit</button>
-    <button type="button" (click)="clickDelButton()" class="btn btn-danger"
-        style="background-color: green;">Del</button>
-    <button type="button" (click)="clickResetButton()" class="btn btn-danger"
-        style="background-color: rgb(48, 127, 201);">Reset</button>
-    <br>
-    <input type="text" id="appId" name="id" style="width: 50px" [(ngModel)]="appointmentWork.id">
+    <button type="button" (click)="clickAddButton()" class="btn btn-success"
+        style="margin-left: 500px">Add</button>
+    <button type="button" (click)="clickFindButton()" class="btn btn-success"
+        style="margin-left: 1px;">Find</button>
+    <button type="button" (click)="clickEditButton()" class="btn btn-success"
+        style="margin-left: 1px;">Edit</button>
+    <button type="button" (click)="clickDelButton()" class="btn btn-success"
+        style="margin-left: 1px;">Del</button>
+    <button type="button" (click)="clickResetButton()" class="btn btn-secondary"
+        style="margin-left: 1px;">Reset</button>
+   
+    <!-- <input type="text" id="appId" name="id" style="width: 50px" [(ngModel)]="appointmentWork.id">
     <input type="text" id="appOwnerName" name="OwnerName" style="width: 250px"
         [(ngModel)]="appointmentWork.pet.owner.name">
     <input type="text" id="appPetName" name="petName" style="width: 150px" [(ngModel)]="appointmentWork.pet.name">
@@ -21,9 +21,10 @@
     <input type="date" id="appInitDay" name="initDay" style="width: 120px" [(ngModel)]="schDayWork.startDay">
     <input type="time" id="appInitTime" name="initTime" style="width: 80px" [(ngModel)]="schDayWork.startTime">
     <input type="date" id="appEndTDay" name="endDay" style="width: 120px" [(ngModel)]="schDayWork.stopDay">
-    <input type="time" id="appEndTime" name="endTime" style="width: 80px" [(ngModel)]="schDayWork.stopTime">
+    <input type="time" id="appEndTime" name="endTime" style="width: 80px" [(ngModel)]="schDayWork.stopTime"> -->
 
 </div>
+
 <div class="ms-1">
     <!-- <p style="margin-left: 0.5vw;">Appointments list</p> -->
     <label>Type of list : </label>
@@ -45,19 +46,33 @@
         (click)="freeTime(appointmentWork.veterinary.id, appointmentWork.initTime)">
     <label for="option6">Free time slice veterinary</label>
 </div>
-<div class="ms-1">
-    <table class="table table-striped table-hover table-bordered" style="width:fit-content">
+
+<div>
+    <table class="table table-striped table-hover  table-bordered" style="min-width: 99vw; margin-left: 0.5vw;">
         <thead>
             <tr>
-                <th style="width:50px">id</th>
-                <th style="width:250px">owner name</th>
-                <th style="width:150px">pet name</th>
-                <th style="width:200px">reason</th>
-                <th style="width:250px">veterinary name</th>
-                <th style="width:100px">init date</th>
-                <th style="width:100px">init time</th>
-                <th style="width:100px">end date</th>
-                <th style="width:100px">end time</th>
+                <th><input type="text" id="appId" name="id" style="width: 50px" [(ngModel)]="appointmentWork.id"></th>
+                <th> <input type="text" id="appOwnerName" name="OwnerName" style="width: 250px"
+                    [(ngModel)]="appointmentWork.pet.owner.name"></th>
+                <th> <input type="text" id="appPetName" name="petName" style="width: 150px" [(ngModel)]="appointmentWork.pet.name"></th>
+                <th><input type="text" id="appReason" name="reason" style="width: 200px" [(ngModel)]="appointmentWork.reason"></th> 
+                <th><input type="text" id="appVetName" name="veterinaryName" style="width: 250px"
+                    [(ngModel)]="appointmentWork.veterinary.name"></th>
+                <th><input type="date" id="appInitDay" name="initDay" style="width: 120px" [(ngModel)]="schDayWork.startDay"></th>
+                <th><input type="time" id="appInitTime" name="initTime" style="width: 80px" [(ngModel)]="schDayWork.startTime"></th>
+                <th><input type="date" id="appEndTDay" name="endDay" style="width: 120px" [(ngModel)]="schDayWork.stopDay"></th>
+                <th><input type="time" id="appEndTime" name="endTime" style="width: 80px" [(ngModel)]="schDayWork.stopTime"></th>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <th>Owner name</th>
+                <th>Pet name</th>
+                <th>Reason</th>
+                <th>Veterinary name</th>
+                <th>Init date</th>
+                <th>Init time</th>
+                <th>End date</th>
+                <th>End time</th>
             </tr>
         </thead>
 

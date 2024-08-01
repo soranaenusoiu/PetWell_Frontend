@@ -55,6 +55,23 @@ export class AppointmentsComponent {
     this.appointmentWork.id = 0;
     this.appointmentWork.initTime = this.schDayWork.startDay + "T" + this.schDayWork.startTime;
     this.appointmentWork.endTime = this.schDayWork.stopDay + "T" + this.schDayWork.stopTime;
+
+    const isTimeValid = this.scheduleList.some(schedule =>
+      this.appointmentWork.initTime >= schedule.startTime && this.appointmentWork.endTime <= schedule.stopTime
+    );
+  
+    if (!isTimeValid) {
+      alert("The selected time is not available for the chosen vet. Please select a different time slot.");
+      return;
+    }
+
+    if (this.appointmentsist.some(appointment =>
+      appointment.veterinary.id === this.appointmentWork.veterinary.id &&
+      appointment.initTime === this.appointmentWork.initTime
+    )) {
+      alert("The selected vet is already booked at the chosen time. Please select a different time slot.");
+      return;
+    }
     if (this.appointmentWork.initTime.length == 0 || this.appointmentWork.endTime.length == 0 ||
       this.appointmentWork.veterinary.name.length == 0 || this.appointmentWork.pet.owner.name.length == 0) return;
     this.petService.getPetsByOwner(this.appointmentWork.pet.owner.name).subscribe((data: Pet[]) => {

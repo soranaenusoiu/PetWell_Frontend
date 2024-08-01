@@ -21,11 +21,12 @@ import { HttpClient } from '@angular/common/http';
     getAllVeterinaries(): Observable<Veterinary[]> {
       return this.httpClient.get<Veterinary[]>(this.backendURL + "/veterinary/getAll");
     }
+
     getVeterinaryByName(veterinaryName: string): Observable<Veterinary> {
+console.log("Find veterinary BY NAME   : " + JSON.stringify(veterinaryName));            
       return this.httpClient.get<Veterinary>(this.backendURL + "/veterinary/getByName/"+veterinaryName);
     }
   
-
     updateVeterinary(veterinaryUpdate: Veterinary): Observable<Veterinary>{
       return this.httpClient.put<Veterinary>(this.backendURL + "/veterinary/update", veterinaryUpdate);
     }

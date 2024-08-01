@@ -47,10 +47,11 @@ export class SchedulesComponent {
     this.scheduleWork.id = 0;
     this.scheduleWork.startTime = this.schDayWork.startDay + "T" + this.schDayWork.startTime;
     this.scheduleWork.stopTime = this.schDayWork.stopDay + "T" + this.schDayWork.stopTime;
-    if (this.scheduleWork.stopTime.length == 0 || this.scheduleWork.stopTime.length == 0 || this.scheduleWork.veterinary.name.length == 0) return;
+    if (this.scheduleWork.startTime.length == 0 || this.scheduleWork.stopTime.length == 0 || this.scheduleWork.veterinary.name.length == 0) return;
+console.log("Veterinary TO find: " + JSON.stringify(this.scheduleWork.veterinary.name));    
     this.vetsService.getVeterinaryByName(this.scheduleWork.veterinary.name).subscribe((data: Veterinary) => {
       this.scheduleWork.veterinary = data;
-      console.log("Veterinary found: " + JSON.stringify(this.scheduleWork));
+      console.log("Veterinary found: " + JSON.stringify(this.scheduleWork.veterinary));
 
       this.scheduleService.addSchedule(this.scheduleWork).subscribe((resp: any) => {
         console.log("Schedule add: " + JSON.stringify(resp));
