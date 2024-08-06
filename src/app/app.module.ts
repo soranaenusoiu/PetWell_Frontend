@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DetailsComponent } from './components/details/details.component';
 import { OwnersComponent } from './components/owners/owners.component';
 import { PetsComponent } from './components/pets/pets.component';
@@ -16,6 +16,7 @@ import { VeterinariesComponent } from './components/veterinaries/veterinaries.co
 import { SchedulesComponent } from './components/schedules/schedules.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
     HttpClientModule
   ],
   providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     // {
     //   provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'shortDate' }
     // }
