@@ -17,7 +17,6 @@ export class OwnersService {
 
 // HTTP POST REQUEST -> CREATE
 
-
   addOwner(ownerAdd: Owner): Observable<Owner> {
   // console.log("Add owner test 2: " + JSON.stringify(ownerAdd));
     return this.httpClient.post<Owner>(this.baseURL + "/owner/add", ownerAdd);
@@ -34,10 +33,6 @@ export class OwnersService {
   getOwnerByName(ownerName: string): Observable<Owner>  {
     return this.httpClient.get<Owner>(this.baseURL + "/owner/getByName/" + ownerName);
   }
-
-  // getOwnerById(ownerId: string): Observable<Owner>  {
-  //   return this.httpClient.get<Owner>(this.baseURL + "/owner/getById/" + ownerId);
-  // }
 
 
   // HTTP PUT REQUEST -> UPDATE

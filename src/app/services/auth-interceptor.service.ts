@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa('user:1234')
+      'Authorization': 'Basic ' + btoa('admin:test1234')
     })
   };
 

@@ -17,6 +17,7 @@ import { SchedulesComponent } from './components/schedules/schedules.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { DATE_PIPE_DEFAULT_OPTIONS } from "@angular/common";
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { SecurityComponent } from './components/security/security.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     VeterinariesComponent,
     SchedulesComponent,
     AppointmentsComponent,
+    SecurityComponent,
     
   ],
   imports: [
