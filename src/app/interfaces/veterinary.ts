@@ -5,3 +5,8 @@ export class Veterinary {
     mail:string;
     speciality:string;
 }
+
+export class NewVeterinary{
+    veterinary: Veterinary;
+    password: string;
+}

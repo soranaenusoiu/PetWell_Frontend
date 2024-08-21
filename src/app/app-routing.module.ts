@@ -6,6 +6,7 @@ import { VeterinariesComponent } from './components/veterinaries/veterinaries.co
 import { SchedulesComponent } from './components/schedules/schedules.component';
 import { AppointmentsComponent } from './components/appointments/appointments.component';
 import { HomeComponent } from './components/home/home.component';
+import { SecurityComponent } from './components/security/security.component';
 
 const routes: Routes = [
 
@@ -34,6 +35,10 @@ const routes: Routes = [
     path:'schedules',
     component:SchedulesComponent
   },
+  {
+    path:'security',
+    component:SecurityComponent
+  }
 
 ];
 

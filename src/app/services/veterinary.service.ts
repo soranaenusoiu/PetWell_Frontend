@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Veterinary } from '../interfaces/veterinary';
+import { NewVeterinary, Veterinary } from '../interfaces/veterinary';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -14,8 +14,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   
     constructor(private httpClient:HttpClient) { }
   
-    addVeterinary(veterinaryAdd: Veterinary): Observable<Veterinary> {
-      return this.httpClient.post<Veterinary>(this.backendURL + "/veterinary/add", veterinaryAdd);
+    addVeterinary(veterinaryAdd: NewVeterinary): Observable<NewVeterinary> {
+      return this.httpClient.post<NewVeterinary>(this.backendURL + "/veterinary/add", veterinaryAdd);
     }
 
     getAllVeterinaries(): Observable<Veterinary[]> {

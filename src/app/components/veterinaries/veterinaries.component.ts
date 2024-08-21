@@ -12,7 +12,8 @@ export class VeterinariesComponent {
 
   veterinariesList: Veterinary[] = [];
   veterinaryWork: Veterinary = { "id": 0, "name": "", "phone": "", "mail": "", "speciality": "" };
-  tipSortList: string="sortByName";
+  tipSortList: string = "sortByName";
+  password: string = "";
 
   constructor(private vetsService: VeterinariesService) { }
 
@@ -24,11 +25,11 @@ export class VeterinariesComponent {
     this.vetsService.getAllVeterinaries().subscribe((data: Veterinary[]) => {
       this.veterinariesList = data;
       console.log("All veterinaries list: " + JSON.stringify(this.veterinariesList));
-      if (this.tipSortList==="sortByName") {
+      if (this.tipSortList === "sortByName") {
         this.clickOrdereByName();
         return;
       }
-      if (this.tipSortList==="sortBySpeciality") {
+      if (this.tipSortList === "sortBySpeciality") {
         this.clickOrdereBySpeciality();
         return;
       }
@@ -39,7 +40,7 @@ export class VeterinariesComponent {
     this.veterinaryWork.id = 0;
     if (this.veterinaryWork.name.trim().length <= 0) return;
     this.veterinaryWork.name = this.veterinaryWork.name.trim();
-    this.vetsService.addVeterinary(this.veterinaryWork).subscribe((resp: any) => {
+    this.vetsService.addVeterinary({ veterinary: this.veterinaryWork, password: this.password }).subscribe((resp: any) => {
       console.log("Add veterinary: " + JSON.stringify(resp));
       this.refreshList();
     });
@@ -54,8 +55,8 @@ export class VeterinariesComponent {
   }
 
   clickFindButton() {
- //   if (this.veterinaryWork.id <= 0) return;
- console.log("Find veterinary by NAME   : " + JSON.stringify(this.veterinaryWork.name));
+    //   if (this.veterinaryWork.id <= 0) return;
+    console.log("Find veterinary by NAME   : " + JSON.stringify(this.veterinaryWork.name));
     this.vetsService.getVeterinaryByName(this.veterinaryWork.name).subscribe((data: Veterinary) => {
       this.veterinaryWork = data;
       console.log("Find veterinary by NAME: " + JSON.stringify(this.veterinaryWork));
