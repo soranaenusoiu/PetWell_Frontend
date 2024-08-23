@@ -14,6 +14,7 @@ export class OwnersComponent {
   //selectedOwner:Owner;
   ownersList: Owner[] = [];
   ownerWork: Owner = { "id": 0, "name": "", "phone": "", "email": "", "address": "" };
+  password: string = "";
   // constructor(private owsService: OwnersService) { }
   // owners = [
   //   {name:"Ion Andreescu", phone:"0777777777", email:"ionandreescu@gmail.com", address:"Bulevardul Ion Mihalache, bl C15, apt. 108"},
@@ -63,7 +64,7 @@ export class OwnersComponent {
       this.ownerWork.id = 0;
       if (this.ownerWork.name.length <= 0) return;
       // console.log("Add owner test: " + JSON.stringify(this.ownerWork));
-      this.owsService.addOwner(this.ownerWork).subscribe((resp: any) => {
+      this.owsService.addOwner({owner: this.ownerWork, password: this.password}).subscribe((resp: any) => {
         console.log("Add owner: " + JSON.stringify(resp));
         this.refreshList();
       });

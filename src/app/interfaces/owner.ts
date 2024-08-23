@@ -5,3 +5,8 @@ export class Owner {
     email:string;
     address:string;
 }
+
+export class NewOwner{
+    owner: Owner;
+    password: string;
+}

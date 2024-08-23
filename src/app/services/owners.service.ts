@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Owner } from '../interfaces/owner';
+import { NewOwner, Owner } from '../interfaces/owner';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -17,9 +17,9 @@ export class OwnersService {
 
 // HTTP POST REQUEST -> CREATE
 
-  addOwner(ownerAdd: Owner): Observable<Owner> {
+  addOwner(ownerAdd: NewOwner): Observable<NewOwner> {
   // console.log("Add owner test 2: " + JSON.stringify(ownerAdd));
-    return this.httpClient.post<Owner>(this.baseURL + "/owner/add", ownerAdd);
+    return this.httpClient.post<NewOwner>(this.baseURL + "/owner/add", ownerAdd);
   }
 
   //HTTP GET REQUEST  -> READ

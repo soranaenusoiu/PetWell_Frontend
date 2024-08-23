@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 export class AuthInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    console.log("username = " + localStorage.getItem("username") + " and password = " + localStorage.getItem("password"));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

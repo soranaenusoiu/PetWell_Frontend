@@ -14,7 +14,7 @@ errorMessage: string | null = null;
 login() {
   localStorage.setItem("username", this.username);
   localStorage.setItem("password", this.password);
-  console.log ("Login: ");
+  console.log ("Login: " + this.username + " " + this.password);
 }
 
 }
